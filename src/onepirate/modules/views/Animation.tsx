@@ -71,6 +71,8 @@ const baebees: [string, string, string][] = [
 
 export default function Animation() {
   return baebees.map(([baebee, title, desc]) => (
+    <div style={{backgroundColor: "#FEF7E9"}}>
     <Card baebee={baebee} title={title} desc={desc} key={baebee} />
+    </div>
   ));
 }

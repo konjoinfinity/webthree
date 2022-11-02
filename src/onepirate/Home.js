@@ -9,6 +9,7 @@ import ProductCTA from './modules/views/ProductCTA';
 import AppAppBar from './modules/views/AppAppBar';
 import withRoot from './modules/withRoot';
 import Animation from './modules/views/Animation.tsx';
+import Typography from './modules/components/Typography';
 
 function Index() {
   return (
@@ -16,6 +17,11 @@ function Index() {
       <AppAppBar />
       <ProductHero />
       <ProductValues />
+      <div style={{backgroundColor: "#FEF7E9", padding: "5%"}}>
+      <Typography variant="h4" marked="center" align="center" component="h2">
+    Meet The Beauty Baebees
+  </Typography>
+  </div>
       <Animation />
       <br/><br/><br/><br/>
       <br/><br/><br/><br/>

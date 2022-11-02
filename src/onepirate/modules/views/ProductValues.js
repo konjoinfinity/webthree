@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -14,7 +13,8 @@ const item = {
 
 function ProductValues() {
   return (
-    <Box id="next"
+    <div>
+    <Box
       component="section"
       sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}
     >
@@ -88,6 +88,11 @@ function ProductValues() {
         </Grid>
       </Container>
     </Box>
+    <br /><br /><br /><br />
+    <Typography variant="h4" marked="center" align="center" component="h2">
+    Meet The Beauty Baebees
+  </Typography>
+  </div>
   );
 }
 

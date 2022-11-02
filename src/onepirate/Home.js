@@ -8,6 +8,7 @@ import ProductHowItWorks from './modules/views/ProductHowItWorks';
 import ProductCTA from './modules/views/ProductCTA';
 import AppAppBar from './modules/views/AppAppBar';
 import withRoot from './modules/withRoot';
+import Animation from './modules/views/Animation.tsx';
 
 function Index() {
   return (
@@ -15,6 +16,9 @@ function Index() {
       <AppAppBar />
       <ProductHero />
       <ProductValues />
+      <Animation />
+      <br/><br/><br/><br/>
+      <br/><br/><br/><br/>
       <ProductCategories />
       <ProductHowItWorks />
       <ProductCTA />

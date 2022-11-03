@@ -4,6 +4,8 @@ import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
 import Typography from "../components/Typography";
 import Button from '@mui/material/Button';
+import RemoveIcon from '@mui/icons-material/Remove';
+import AddIcon from '@mui/icons-material/Add';
 
 let txreceipt = "";
 
@@ -187,6 +189,7 @@ function NFT() {
                 )}
               </Typography>
               <br />
+               {/* eslint-disable-next-line */}
               <div style={{alignItems: "center", justifyContent: "center", flexDirection: "row", display: "flex", justifyContent: "space-evenly"}}>
                 <button
                   style={{ padding: "1.5em"  }}
@@ -195,7 +198,7 @@ function NFT() {
                     e.preventDefault();
                     decrementMintAmount();
                   }}>
-                  -
+                  <RemoveIcon />
                   </button>
                 <Typography
                   style={{
@@ -214,7 +217,7 @@ function NFT() {
                     incrementMintAmount();
                   }}
                 >
-                  +
+                  <AddIcon />
                 </button>
               </div>
               <br />

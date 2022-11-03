@@ -173,13 +173,7 @@ function NFT() {
             </div>
           ) : (
             <>
-              <Typography
-                style={{
-                  textAlign: "center",
-                  color: "var(--accent-text)",
-                  fontSize: "25px",
-                }}
-              >
+              <Typography>
                 {feedback}
                 {txreceipt !== "" ? (
                   <a
@@ -193,16 +187,16 @@ function NFT() {
                 )}
               </Typography>
               <br />
-              <div ai={"center"} jc={"center"} fd={"row"}>
-                <Button variant="contained"
-                  style={{ lineHeight: 0.4 }}
-                  disabled={claimingNFT ? 1 : 0}
+              <div style={{alignItems: "center", justifyContent: "center", flexDirection: "row", display: "flex", justifyContent: "space-evenly"}}>
+                <button
+                  style={{ padding: "1.5em"  }}
+                  disabled={claimingNFT ? true : false}
                   onClick={(e) => {
                     e.preventDefault();
                     decrementMintAmount();
                   }}>
                   -
-                  </Button>
+                  </button>
                 <Typography
                   style={{
                     textAlign: "center",
@@ -212,27 +206,30 @@ function NFT() {
                 >
                   {mintAmount}
                 </Typography>
-                <Button variant="contained"
-                  disabled={claimingNFT ? 1 : 0}
+                <button
+                style={{ padding: "1.5em" }}
+                  disabled={claimingNFT ? true : false}
                   onClick={(e) => {
                     e.preventDefault();
                     incrementMintAmount();
                   }}
                 >
                   +
-                </Button>
+                </button>
               </div>
               <br />
-              <div ai={"center"} jc={"center"} fd={"row"}>
-                <Button
-                  disabled={claimingNFT ? 1 : 0}
+              <div style={{alignItems: "center", justifyContent: "center", flexDirection: "row", display: "flex"}}>
+                <Button variant="contained"
+              color="secondary"
+              size="large"
+                  disabled={claimingNFT ? true : false}
                   onClick={(e) => {
                     e.preventDefault();
                     claimNFTs(false);
                     getData();
                   }}
                 >
-                  {claimingNFT ? "MINTING..." : "MINT - 25 MATIC"}
+                  {claimingNFT ? "MINTING..." : `MINT - ${25*mintAmount} MATIC`}
                 </Button>
               </div>
             </>

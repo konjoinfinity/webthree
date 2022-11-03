@@ -1,13 +1,14 @@
 import * as React from 'react';
-import Button from '../components/Button';
 import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
+import NFT from "./NFT"
 
 const backgroundImage =
   'https://reautydao.io/wp-content/uploads/baebee.png';
 
 export default function ProductHero() {
   return (
+    <div>
     <ProductHeroLayout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
@@ -31,18 +32,12 @@ export default function ProductHero() {
       >
         Mint your Baebee today!
       </Typography>
-      <Button
-        color="secondary"
-        variant="contained"
-        size="large"
-        component="a"
-        href="/premium-themes/onepirate/sign-up/"
-        sx={{ minWidth: "10%" }}>
-        Connect Wallet
-      </Button>
+      <NFT />
       <Typography variant="body2" color="inherit"  marked="center" sx={{ mt: 2 }}>
         Discover the experience
       </Typography>
     </ProductHeroLayout>
+      
+    </div>
   );
 }

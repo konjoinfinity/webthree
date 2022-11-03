@@ -1,0 +1,19 @@
+{
+  "CONTRACT_ADDRESS": "0x68e5167252b534aD3A50D559AB61Ef6B84E1Ee09",
+  "SCAN_LINK": "https://polygonscan.com/address/0x68e5167252b534aD3A50D559AB61Ef6B84E1Ee09",
+  "NETWORK": {
+    "NAME": "Polygon",
+    "SYMBOL": "Matic",
+    "ID": 137
+  },
+  "NFT_NAME": "Toxic Baebee NFT Series",
+  "SYMBOL": "TXBAEBEE",
+  "MAX_SUPPLY": 4000,
+  "WEI_COST": 25000000000000000000,
+  "DISPLAY_COST": 25,
+  "GAS_LIMIT": 8000000,
+  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/toxic-baebee-nft-series",
+  "SHOW_BACKGROUND": true
+}
+

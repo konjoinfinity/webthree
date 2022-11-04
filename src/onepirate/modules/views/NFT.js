@@ -6,6 +6,12 @@ import Typography from "../components/Typography";
 import Button from '@mui/material/Button';
 import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
+import Contract from 'web3-eth-contract';
+import Web3 from "web3"
+
+const { ethereum } = window;
+Contract.setProvider(ethereum);
+let web3 = new Web3(ethereum);
 
 let txreceipt = "";
 
@@ -37,42 +43,75 @@ function NFT() {
     SHOW_BACKGROUND: false,
   });
 
-  const claimNFTs = () => {
+  const claimNFTs = async() => {
     let cost = CONFIG.WEI_COST;
-    let contractAddress = CONFIG.CONTRACT_ADDRESS;
     let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit * mintAmount);
-    console.log(CONFIG.CONTRACT_ADDRESS);
-    console.log(contractAddress);
-    console.log("Cost: ", totalCostWei);
-    console.log("Gas limit: ", totalGasLimit);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     setClaimingNFT(true);
-    blockchain.smartContract.methods
-      .mint(mintAmount)
-      .send({
-        gasLimit: String(totalGasLimit),
-        to: contractAddress,
-        from: blockchain.account,
-        value: totalCostWei,
-      })
-      .once("error", (err) => {
-        console.log(err);
-        setFeedback("Sorry, something went wrong please try again later.");
-        setClaimingNFT(false);
-      })
-      .then((receipt) => {
-        console.log(receipt);
-        txreceipt = receipt;
-        setFeedback(
-          `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
-        );
-        setClaimingNFT(false);
-        dispatch(fetchData(blockchain.account));
-        console.log(blockchain);
-      });
+    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    const abiResponse = await fetch("/config/abi.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    console.log(abiResponse)
+    const abi = await abiResponse.json();
+    console.log(abi)
+var contract = new Contract(abi, CONFIG.CONTRACT_ADDRESS);
+web3.eth.sendTransaction({
+  from: blockchain.account,
+  to: CONFIG.CONTRACT_ADDRESS,
+  data: contract.methods.mint(mintAmount).encodeABI(),
+  gasLimit: String(totalGasLimit),
+  value: totalCostWei,
+})
+
+    // let cost = CONFIG.WEI_COST;
+    // let gasLimit = CONFIG.GAS_LIMIT;
+    // let totalCostWei = String(cost * mintAmount);
+    // let totalGasLimit = String(gasLimit * mintAmount);
+    // setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    // setClaimingNFT(true);
+    // console.log(blockchain.account)
+    // blockchain.smartContract.methods.mint(mintAmount).send({from: blockchain.account})
+
+   
+    // console.log(CONFIG.CONTRACT_ADDRESS);
+    // console.log("Cost: ", totalCostWei);
+    // console.log("Gas limit: ", totalGasLimit);
+    // setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    // setClaimingNFT(true);
+    // console.log(blockchain)
+    // console.log(blockchain.smartContract)
+    //  blockchain.smartContract.methods
+    //   .mint(mintAmount)
+    //   .send({
+    //     gasLimit: String(totalGasLimit),
+    //     to: CONFIG.CONTRACT_ADDRESS,
+    //     from: blockchain.account,
+    //     value: totalCostWei,
+    //   }, (err) => {console.log(err)})
+    //   .then("error", (err) => {
+    //     console.log(".once")
+    //     console.log(err);
+    //     setFeedback("Sorry, something went wrong please try again later.");
+    //     setClaimingNFT(false);
+    //   })
+    //   .then((receipt) => {
+    //     console.log(".then")
+    //     console.log(receipt);
+    //     txreceipt = receipt;
+    //     setFeedback(
+    //       `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
+    //     );
+    //     setClaimingNFT(false);
+    //     dispatch(fetchData(blockchain.account));
+    //     console.log(blockchain);
+    //   });
   };
+
 
   const decrementMintAmount = () => {
     let newMintAmount = mintAmount - 1;

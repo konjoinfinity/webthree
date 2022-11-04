@@ -64,6 +64,7 @@ export const connect = () => {
         });
         console.log(networkId)
         console.log(CONFIG.NETWORK.ID)
+        // eslint-disable-next-line 
         if (networkId == CONFIG.NETWORK.ID) {
           console.log("network ids match")
           const SmartContractObj = new Web3EthContract(
@@ -100,6 +101,7 @@ export const connect = () => {
           const networkId = await ethereum.request({
             method: "net_version",
           });
+          // eslint-disable-next-line 
           if (networkId == CONFIG.NETWORK.ID) {
             const SmartContractObj = new Web3EthContract(
               abi,
@@ -116,9 +118,9 @@ export const connect = () => {
             ethereum.on("accountsChanged", (accounts) => {
               dispatch(updateAccount(accounts[0]));
             });
-            // ethereum.on("chainChanged", () => {
-            //   window.location.reload();
-            // });
+            ethereum.on("chainChanged", () => {
+              window.location.reload();
+            });
             // Add listeners end
             console.log("switched to MATIC network")
           } else {

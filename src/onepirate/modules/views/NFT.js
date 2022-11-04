@@ -43,6 +43,7 @@ function NFT() {
     SHOW_BACKGROUND: false,
   });
 
+
   const claimNFTs = async() => {
     let cost = CONFIG.WEI_COST;
     let gasLimit = CONFIG.GAS_LIMIT;
@@ -66,52 +67,22 @@ web3.eth.sendTransaction({
   data: contract.methods.mint(mintAmount).encodeABI(),
   gasLimit: String(totalGasLimit),
   value: totalCostWei,
-})
-
-    // let cost = CONFIG.WEI_COST;
-    // let gasLimit = CONFIG.GAS_LIMIT;
-    // let totalCostWei = String(cost * mintAmount);
-    // let totalGasLimit = String(gasLimit * mintAmount);
-    // setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-    // setClaimingNFT(true);
-    // console.log(blockchain.account)
-    // blockchain.smartContract.methods.mint(mintAmount).send({from: blockchain.account})
-
-   
-    // console.log(CONFIG.CONTRACT_ADDRESS);
-    // console.log("Cost: ", totalCostWei);
-    // console.log("Gas limit: ", totalGasLimit);
-    // setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
-    // setClaimingNFT(true);
-    // console.log(blockchain)
-    // console.log(blockchain.smartContract)
-    //  blockchain.smartContract.methods
-    //   .mint(mintAmount)
-    //   .send({
-    //     gasLimit: String(totalGasLimit),
-    //     to: CONFIG.CONTRACT_ADDRESS,
-    //     from: blockchain.account,
-    //     value: totalCostWei,
-    //   }, (err) => {console.log(err)})
-    //   .then("error", (err) => {
-    //     console.log(".once")
-    //     console.log(err);
-    //     setFeedback("Sorry, something went wrong please try again later.");
-    //     setClaimingNFT(false);
-    //   })
-    //   .then((receipt) => {
-    //     console.log(".then")
-    //     console.log(receipt);
-    //     txreceipt = receipt;
-    //     setFeedback(
-    //       `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
-    //     );
-    //     setClaimingNFT(false);
-    //     dispatch(fetchData(blockchain.account));
-    //     console.log(blockchain);
-    //   });
+}).once("error", (err) => {
+    console.log(err);
+    setFeedback("Sorry, something went wrong please try again later.");
+    setClaimingNFT(false);
+  })
+  .then((receipt) => {
+    console.log(receipt);
+    txreceipt = "data";
+    setFeedback(
+      `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
+    );
+    setClaimingNFT(false);
+    dispatch(fetchData(blockchain.account));
+    console.log(blockchain);
+  });
   };
-
 
   const decrementMintAmount = () => {
     let newMintAmount = mintAmount - 1;
@@ -218,7 +189,7 @@ web3.eth.sendTransaction({
                 {feedback}
                 {txreceipt !== "" ? (
                   <a
-                    href={`https://opensea.io/assets/matic/0x68e5167252b534ad3a50d559ab61ef6b84e1ee09/${txreceipt.events.Transfer.returnValues.tokenId}`}
+                    href={`https://opensea.io/assets/matic/0x68e5167252b534ad3a50d559ab61ef6b84e1ee09/${txreceipt}`}
                     rel="nofollow"
                   >
                     Opensea

@@ -11,7 +11,7 @@
   "MAX_SUPPLY": 4000,
   "WEI_COST": 25000000000000000000,
   "DISPLAY_COST": 25,
-  "GAS_LIMIT": 8000000,
+  "GAS_LIMIT": 3000000,
   "MARKETPLACE": "Opeansea",
   "MARKETPLACE_LINK": "https://opensea.io/collection/toxic-baebee-nft-series",
   "SHOW_BACKGROUND": true

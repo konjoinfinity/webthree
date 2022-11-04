@@ -45,10 +45,14 @@ function NFT() {
 
 
   const claimNFTs = async() => {
+    let gasAmt = web3.eth.getGasPrice().then(console.log)
+    web3.eth.getGasPrice().then((result)=>{console.log(web3.utils.fromWei(result,'ether'))})
+    console.log(data.totalSupply)
     let cost = CONFIG.WEI_COST;
-    let gasLimit = CONFIG.GAS_LIMIT;
+    // let gasLimit = CONFIG.GAS_LIMIT;
     let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
+    // let totalGasLimit = String(gasLimit * mintAmount);
+    let totalGasLimit = String(gasAmt * mintAmount);
     setClaimingNFT(true);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     const abiResponse = await fetch("/config/abi.json", {
@@ -189,7 +193,7 @@ web3.eth.sendTransaction({
                 {feedback}
                 {txreceipt !== "" ? (
                   <a
-                    href={`https://opensea.io/assets/matic/0x68e5167252b534ad3a50d559ab61ef6b84e1ee09/${txreceipt}`}
+                    href={"https://opensea.io/collection/toxic-baebee-nft-series"}
                     rel="nofollow"
                   >
                     Opensea

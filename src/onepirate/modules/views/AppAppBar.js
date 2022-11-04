@@ -7,6 +7,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./redux/data/dataActions";
 import { connect } from "./redux/blockchain/blockchainActions";
+import Typography from '../components/Typography';
+
 
 function AppAppBar() {
   const dispatch = useDispatch();
@@ -67,8 +69,7 @@ function AppAppBar() {
             variant="h6"
             underline="none"
             color="inherit"
-            href="/premium-themes/onepirate/"
-            sx={{ fontSize: 26 }}
+            sx={{ fontSize: "3vh", paddingRight: "2vh" }}
           >
             {'Beauty Baebee NFTs'}
           </Link>
@@ -77,22 +78,25 @@ function AppAppBar() {
           <Button
         color="secondary"
         variant="contained"
-        size="large"
+        size="medium"
         onClick={(e) => {
           e.preventDefault();
           dispatch(connect());
           getData();
         }}>
+           <Typography style={{fontSize: "1.3vh"}}>
         Connect Wallet
+        </Typography>
       </Button>
           ) : (
       <Button
         color="secondary"
         variant="contained"
-        size="large">
+        size="medium">
+          <Typography style={{fontSize: "1.3vh"}}>
         Connected to {blockchain.account ? blockchain.account.substring(0, 4) : ""}...{blockchain.account ? blockchain.account.substring(blockchain.account.length - 4) : ""}
+        </Typography>
       </Button>
-
           )}
           </Box>
         </Toolbar>

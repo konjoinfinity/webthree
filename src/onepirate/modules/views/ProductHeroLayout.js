@@ -10,11 +10,7 @@ const ProductHeroLayoutRoot = styled('section')(({ theme }) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
-  [theme.breakpoints.up('sm')]: {
-    height: '80vh',
-    minHeight: 500,
-    maxHeight: 1300,
-  },
+    height: '95vh',
 }));
 
 const Background = styled(Box)({
@@ -35,19 +31,20 @@ function ProductHeroLayout(props) {
     <ProductHeroLayoutRoot>
       <Container
         sx={{
-          mt: 3,
-          mb: 14,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          height: "100vh",
+          width: "100%"
         }}>
           <Card
             sx={{
-              maxWidth: "50%",
-              maxHeight: "50%",
+              maxWidth: "60vh",
+              maxHeight: "82vh",
               padding: "2%",
               backgroundColor: "#FEF7E9",
-              opacity: 0.95
+              opacity: 0.95,
+              marginTop: "8vh"
             }}>
               <div flex={1} style={{
                   display: "flex",

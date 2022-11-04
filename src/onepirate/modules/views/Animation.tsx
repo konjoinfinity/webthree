@@ -52,8 +52,8 @@ function Card({ baebee, title, desc }: Props) {
       </motion.div>
       <motion.div className="card" variants={secCardVariants}>
         <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center"}}>
-      <Typography style={{maxWidth: "100%", fontSize: "20%", paddingBottom: "8%"}}>{title}</Typography>
-        <Typography style={{maxWidth: "75%"}}>{desc}</Typography>
+      <Typography style={{maxWidth: "100%", fontSize: "2.5vh", paddingBottom: "8%"}}>{title}</Typography>
+        <Typography style={{maxWidth: "75%", fontSize: "1.3vh"}}>{desc}</Typography>
         </div>
       </motion.div>
     </motion.div>

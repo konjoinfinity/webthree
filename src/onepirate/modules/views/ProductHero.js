@@ -12,28 +12,26 @@ export default function ProductHero() {
     <ProductHeroLayout
       sxBackground={{
         backgroundImage: `url(${backgroundImage})`,
-        backgroundColor: '#7fc7d9', // Average color of the background image.
+        backgroundColor: '#7fc7d9',
         backgroundPosition: 'center',
       }}>
-      {/* Increase the network loading priority of the background image. */}
       <img
         style={{ display: 'none' }}
         src={backgroundImage}
         alt="increase priority" />
 
-      <Typography color="inherit" align="center" variant="h2" marked="center">
+      <Typography color="inherit" align="center" variant="h2" marked="center" style={{fontSize: "4vh"}}>
         Beauty Baebee NFTs
       </Typography>
       <Typography
         color="inherit"
         align="center"
-        variant="h5"
-        sx={{ mb: 4, mt: { sx: 4, sm: 10 } }}
-      >
+        variant="h5">
+          <br />
         Mint your Baebee today!
       </Typography>
       <NFT />
-      <Typography variant="body2" color="inherit"  marked="center" sx={{ mt: 2 }}>
+      <Typography variant="body2" color="inherit"  marked="center" style={{fontSize: "2vh", paddingTop: "1vh"}}>
         Discover the experience
       </Typography>
     </ProductHeroLayout>

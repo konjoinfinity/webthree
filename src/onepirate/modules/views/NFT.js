@@ -8,12 +8,18 @@ import RemoveIcon from '@mui/icons-material/Remove';
 import AddIcon from '@mui/icons-material/Add';
 import Contract from 'web3-eth-contract';
 import Web3 from "web3"
+import { ethers } from "ethers";
 
 const { ethereum } = window;
 Contract.setProvider(ethereum);
 let web3 = new Web3(ethereum);
+const provider = new ethers.providers.Web3Provider(window.ethereum)
 
 let txreceipt = "";
+let gasPrice = 0;
+let lastBaseFeePerGas = 0;
+let maxFeePerGas = 0;
+let maxPriorityFeePerGas = 0;
 
 function NFT() {
   const dispatch = useDispatch();
@@ -46,9 +52,10 @@ function NFT() {
 
   const claimNFTs = async() => {
     let cost = CONFIG.WEI_COST;
-    let gasLimit = CONFIG.GAS_LIMIT;
+    // let gasLimit = CONFIG.GAS_LIMIT;
+    let gasLimit = lastBaseFeePerGas;
     let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit * mintAmount);
+    let totalGasLimit = String(gasLimit);
     setClaimingNFT(true);
     setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
     const abiResponse = await fetch("/config/abi.json", {
@@ -119,6 +126,23 @@ web3.eth.sendTransaction({
 
   useEffect(() => {
     getConfig();
+    async function getFee(){
+      let feeData = await provider.getFeeData();
+      console.log(feeData)
+      gasPrice = String(web3.utils.toNumber(feeData.gasPrice._hex));
+      gasPrice = Number(gasPrice.slice(0, -4));
+      lastBaseFeePerGas = String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex));
+      lastBaseFeePerGas = Number(lastBaseFeePerGas.slice(0, -4));
+      maxFeePerGas = String(web3.utils.toNumber(feeData.maxFeePerGas._hex));
+      maxFeePerGas = Number(maxFeePerGas.slice(0, -4));
+      maxPriorityFeePerGas = String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex));
+      maxPriorityFeePerGas = Number(maxPriorityFeePerGas.slice(0, -4));
+      console.log(gasPrice);
+      console.log(lastBaseFeePerGas);
+      console.log(maxFeePerGas);
+      console.log(maxPriorityFeePerGas);
+    }
+    getFee();
   }, []);
 
   useEffect(() => {
@@ -189,7 +213,7 @@ web3.eth.sendTransaction({
                 {feedback}
                 {txreceipt !== "" ? (
                   <a
-                    href={"https://opensea.io/collection/toxic-baebee-nft-series"}
+                    href={"https://opensea.io/collection/beauty-baebee-nft"}
                     rel="nofollow"
                   >
                     Opensea
@@ -242,7 +266,7 @@ web3.eth.sendTransaction({
                     getData();
                   }}
                 >
-                  {claimingNFT ? "MINTING..." : `MINT - ${25*mintAmount} MATIC`}
+                  {claimingNFT ? "MINTING..." : `MINT - ${50*mintAmount} MATIC`}
                 </Button>
               </div>
             </>

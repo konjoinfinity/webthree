@@ -1,19 +1,19 @@
 {
-  "CONTRACT_ADDRESS": "0x68e5167252b534aD3A50D559AB61Ef6B84E1Ee09",
-  "SCAN_LINK": "https://polygonscan.com/address/0x68e5167252b534aD3A50D559AB61Ef6B84E1Ee09",
+  "CONTRACT_ADDRESS": "0x12E4c6b6Be904055FF15283C82bE1d941a427f7A",
+  "SCAN_LINK": "https://polygonscan.com/address/0x12e4c6b6be904055ff15283c82be1d941a427f7a",
   "NETWORK": {
     "NAME": "Polygon",
     "SYMBOL": "Matic",
     "ID": 137
   },
-  "NFT_NAME": "Toxic Baebee NFT Series",
-  "SYMBOL": "TXBAEBEE",
+  "NFT_NAME": "Beauty Baebee NFT",
+  "SYMBOL": "BTYBAEBEE",
   "MAX_SUPPLY": 4000,
-  "WEI_COST": 25000000000000000000,
-  "DISPLAY_COST": 25,
+  "WEI_COST": 50000000000000000000,
+  "DISPLAY_COST": 50,
   "GAS_LIMIT": 6000000,
   "MARKETPLACE": "Opeansea",
-  "MARKETPLACE_LINK": "https://opensea.io/collection/toxic-baebee-nft-series",
+  "MARKETPLACE_LINK": "https://opensea.io/collection/beauty-baebee-nft",
   "SHOW_BACKGROUND": true
 }
 

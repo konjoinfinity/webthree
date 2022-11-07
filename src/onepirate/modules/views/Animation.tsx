@@ -40,7 +40,6 @@ const secCardVariants: Variants = {
   };
 
 function Card({ baebee, title, desc }: Props) {
-
   return (
     <motion.div key={baebee}
       className="card-container"
@@ -70,9 +69,9 @@ const baebees: [string, string, string][] = [
 ];
 
 export default function Animation() {
-  return baebees.map(([baebee, title, desc], id) => (
-    <div style={{backgroundColor: "#FEF7E9"}}>
-    <Card baebee={baebee} title={title} desc={desc} key={baebee} />
+  return baebees.map(([baebee, title, desc]) => (
+    <div style={{backgroundColor: "#FEF7E9"}} key={title}>
+    <Card baebee={baebee} title={title} desc={desc} key={title} />
     </div>
   ));
 }

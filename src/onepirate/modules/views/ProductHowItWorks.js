@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
@@ -20,12 +19,15 @@ const number = {
   fontWeight: 'medium',
 };
 
-const image = {
-  height: "35%",
-  my: 4,
-};
-
 function ProductHowItWorks() {
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth' 
+    });
+  };
+
   return (
     <Box
       component="section"
@@ -53,51 +55,34 @@ function ProductHowItWorks() {
           }}
         />
         <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
-          How it works
+          How to mint
         </Typography>
         <div>
           <Grid container spacing={5}>
             <Grid item xs={12} md={4}>
               <Box sx={item}>
                 <Box sx={number}>1.</Box>
-                <Box
-                  component="img"
-                  src="https://reautydao.io/wp-content/uploads/2022/10/wesley.png"
-                  alt="suitcase"
-                  sx={image}
-                />
+                <img src={require('./metamask.png')}  alt={'Metamask'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
                 <Typography variant="h5" align="center">
-                  Appointment every Wednesday 9am.
+                  Connect your metamask wallet to the mint page and approve your wallet for interaction with the Baebee NFT website. If you don't have metamask installed, <a href="https://metamask.io/" rel="nofollow">click here.</a>
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={4}>
               <Box sx={item}>
                 <Box sx={number}>2.</Box>
-                <Box
-                  component="img"
-                  src="https://reautydao.io/wp-content/uploads/2022/10/ora.png"
-                  alt="graph"
-                  sx={image}
-                />
+                <img src={require('./polygonlogo.png')}  alt={'Polygon'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited quantities, so
-                  be quick.
+                  Choose the number of NFTs you would like to mint, maximum 10 NFTs per transaction. Ensure you have enough <a href="https://www.coinbase.com/price/polygon"  rel="nofollow">MATIC - {'POLYGON'}</a> in your wallet and click "MINT".
                 </Typography>
               </Box>
             </Grid>
             <Grid item xs={12} md={4}>
               <Box sx={item}>
                 <Box sx={number}>3.</Box>
-                <Box
-                  component="img"
-                  src="https://reautydao.io/wp-content/uploads/2022/10/joy.png"
-                  alt="clock"
-                  sx={image}
-                />
+                <img src={require('./nft-100.png')}  alt={'NFT'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
                 <Typography variant="h5" align="center">
-                  {'New offers every week. New experiences, new surprises. '}
-                  {'Your Sundays will no longer be alike.'}
+                  Wait for the minting transaction to confirm. Check your metamask wallet to view the status. Once confirmed, enjoy your newly minted Beauty Baebee!
                 </Typography>
               </Box>
             </Grid>
@@ -108,10 +93,10 @@ function ProductHowItWorks() {
           size="large"
           variant="contained"
           component="a"
-          href="/premium-themes/onepirate/sign-up/"
-          sx={{ mt: 8 }}
+          onClick={scrollToTop}
+          sx={{ mt: 8, marginTop: "10vh" }}
         >
-          Get started
+          Mint Your Baebee
         </Button>
       </Container>
     </Box>

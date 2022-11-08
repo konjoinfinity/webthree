@@ -129,10 +129,10 @@ web3.eth.sendTransaction({
     async function getFee(){
       let feeData = await provider.getFeeData();
       console.log(feeData)
-      gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -5));
-      lastBaseFeePerGas = Number(String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(0, -5));
-      maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -5));
-      maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -5));
+      gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4));
+      lastBaseFeePerGas = Number(String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(0, -4));
+      maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4));
+      maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -4));
       console.log(gasPrice);
       console.log(lastBaseFeePerGas);
       console.log(maxFeePerGas);

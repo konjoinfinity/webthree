@@ -10,6 +10,7 @@ import AppAppBar from './modules/views/AppAppBar';
 import withRoot from './modules/withRoot';
 import Animation from './modules/views/Animation.tsx';
 import Typography from './modules/components/Typography';
+import Specs from "./modules/views/Specs"
 
 function Index() {
   return (
@@ -22,11 +23,12 @@ function Index() {
     Meet The Beauty Baebees
   </Typography>
   </div>
-      <Animation />
-      <br/><br/><br/><br/>
-      <br/><br/><br/><br/>
-      <ProductCategories />
+  <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent:"center", alignItems:"center", marginBottom: "10vh"}}>
+  <Animation />
+  </div>
+  <Specs />
       <ProductHowItWorks />
+      <ProductCategories />
       <ProductCTA />
       <ProductSmokingHero />
       <AppFooter />

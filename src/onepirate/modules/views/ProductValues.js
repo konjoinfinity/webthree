@@ -13,37 +13,25 @@ const item = {
 
 function ProductValues() {
   return (
-    <Box
-      component="section"
-      sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}
-    >
-      <Container sx={{ mt: 15, mb: 30, display: 'flex', position: 'relative' }}>
-        <Box
-          component="img"
-          src="/static/themes/onepirate/productCurvyLines.png"
-          alt="curvy lines"
-          sx={{ pointerEvents: 'none', position: 'absolute', top: -180 }}
-        />
+    <Box sx={{ bgcolor: 'secondary.light' }}>
+      <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14, textAlign: "center", paddingTop: "10vh" }}>
+       Beauty Baebee NFT Series
+        </Typography>
+    <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}>
+      <Container sx={{ display: 'flex', position: 'relative', mb: "10vh" }}>
         <Grid container spacing={5}>
           <Grid item xs={12} md={4}>
             <Box sx={item}>
               <Box
                 component="img"
-                src="https://reautydao.io/wp-content/uploads/2022/10/joy.png"
+                src={require('./cosmetics.png')}
                 alt="suitcase"
-                sx={{ height: "30%" }}
-              />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                The best luxury hotels
+                sx={{ height: "25vh" }} />
+              <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
+              Beauty Reimagined
               </Typography>
-              <Typography variant="h5">
-                {
-                  'From the latest trendy boutique hotel to the iconic palace with XXL pool'
-                }
-
-                {
-                  ', go for a mini-vacation just a few subway stops away from your home.'
-                }
+              <Typography variant="h5" sx={{ textAlign: "center" }}>
+              The "Toxic Baebee" NFT Series illustrated the "Toxic Side of Beauty". Reauty DAO is taking a stand against the misleading beauty culture, unhealthy practices, and harmful ingredients to reimagine the beauty industry with a decentralized Web3 community. 
               </Typography>
             </Box>
           </Grid>
@@ -51,19 +39,14 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="https://reautydao.io/wp-content/uploads/2022/10/maridonna.png"
+                src={require('./2562.png')}
                 alt="graph"
-                sx={{ height: "30%" }}
-              />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                New experiences
+                sx={{ height: "25vh" }} />
+              <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
+              Beauty Baebee NFTs
               </Typography>
-              <Typography variant="h5">
-                {
-                  'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '
-                }
-
-                {'your Sundays will not be alike.'}
+              <Typography variant="h5" sx={{ textAlign: "center" }}>
+              The Beauty Baebee series illustrated the Reauty DAO mission and invited the beauty lovers, LGBTQ+ groups, BIPOC owners and SME beauty content creators to build a new order in the beauty industry.
               </Typography>
             </Box>
           </Grid>
@@ -71,21 +54,20 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src="https://reautydao.io/wp-content/uploads/2022/10/kenneth.png"
+                src={require('./handnft.png')}
                 alt="clock"
-                sx={{ height: "30%" }}
-              />
-              <Typography variant="h6" sx={{ my: 5 }}>
-                Exclusive rates
+                sx={{ height: "25vh" }} />
+              <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
+                Unique NFTs
               </Typography>
-              <Typography variant="h5">
-                {'By registering, you will access specially negotiated rates '}
-                {'that you will not find anywhere else.'}
+              <Typography variant="h5" sx={{ textAlign: "center" }}>
+              Each unique Baebee is designed by our creative team that generates over 170 Possible traits. These include but are not limited to expression, headwear, and clothing.
               </Typography>
             </Box>
           </Grid>
         </Grid>
       </Container>
+    </Box>
     </Box>
   );
 }

@@ -29,3 +29,32 @@
     height: 60vh;
   }
   
+  .card-display {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media only screen and (max-width: 1355px) { 
+  .card-display {
+       width: 100%;
+       padding: 5vh;
+     }
+     .card {
+      width: 20vh;
+      height: 40vh;
+      border-radius: 20px;
+      margin-bottom: 4vh;
+      margin-top: 3vh;
+      margin-right: 1vh;
+      margin-left: 1vh;
+    }
+  }
+
+@media only screen and (min-width: 1356px) { 
+  .card-display {
+       width: 50%;
+  }
+}

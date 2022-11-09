@@ -39,6 +39,7 @@ const secCardVariants: Variants = {
     }
   };
 
+
 function Card({ baebee, title, desc }: Props) {
   return (
     <motion.div key={baebee}
@@ -68,9 +69,10 @@ const baebees: [string, string, string][] = [
   ["https://reautydao.io/wp-content/uploads/Cat.png","Happy Baebee", "Baebee wishes to bring joy into the world, and music is the way to deliver happy energy for everyone! Join Beabee's happy world and enjoy the music, joy, and blessings together!"]
 ];
 
+
 export default function Animation() {
   return baebees.map(([baebee, title, desc]) => (
-    <div style={{backgroundColor: "#FEF7E9", width: "50%"}} key={title}>
+    <div className="card-display" style={{backgroundColor: "#FEF7E9"}} key={title}>
     <Card baebee={baebee} title={title} desc={desc} key={title} />
     </div>
   ));

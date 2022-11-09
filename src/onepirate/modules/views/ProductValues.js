@@ -46,7 +46,7 @@ function ProductValues() {
               Beauty Baebee NFTs
               </Typography>
               <Typography variant="h5" sx={{ textAlign: "center" }}>
-              The Beauty Baebee series illustrated the Reauty DAO mission and invited the beauty lovers, LGBTQ+ groups, BIPOC owners and SME beauty content creators to build a new order in the beauty industry.
+              The Beauty Baebee series illustrates the Reauty DAO mission and invites beauty lovers, LGBTQ+ groups, BIPOC owners and SME beauty content creators to build a new order in the beauty industry.
               </Typography>
             </Box>
           </Grid>
@@ -61,7 +61,7 @@ function ProductValues() {
                 Unique NFTs
               </Typography>
               <Typography variant="h5" sx={{ textAlign: "center" }}>
-              Each unique Baebee is designed by our creative team that generates over 170 Possible traits. These include but are not limited to expression, headwear, and clothing.
+              Each unique Baebee is designed by our creative team and generated from a pool of more than 170 possible traits. These include but are not limited to expression, headwear, and clothing.
               </Typography>
             </Box>
           </Grid>

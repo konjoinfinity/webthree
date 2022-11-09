@@ -61,7 +61,7 @@ function Specs() {
                 NFT Utility
               </Typography>
               <Typography variant="h5" sx={{ textAlign: "center" }}>
-              Baebees NFTs are exchangeable for ReautyCoin (ERC 2.0 Token). We allow our NFT owner to convert their NFT To our ReautyCoin. Please check the ReautyDAO page to learn more.
+              Baebees NFTs are exchangeable for ReautyCoin (ERC-20 Token). We allow our NFT owner to convert their NFT To our ReautyCoin. Please check the <a href="https://reautydao.io" rel="dofollow">ReautyDAO page</a> to learn more.
                </Typography>
                   </Box>
           </Grid>

@@ -128,7 +128,8 @@ export const connect = () => {
           }
         }
       } catch (err) {
-        dispatch(connectFailed(`Something went wrong. + ${err}`));
+        dispatch(connectFailed("Something went wrong."));
+        console.log(err)
       }
     } else {
       dispatch(connectFailed("Install Metamask."));

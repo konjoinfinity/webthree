@@ -4,7 +4,7 @@ import ProductHeroLayout from './ProductHeroLayout';
 import NFT from "./NFT"
 
 const backgroundImage =
-  'https://reautydao.io/wp-content/uploads/baebee.png';
+  require('./baebee.png')
 
 export default function ProductHero() {
   return (

@@ -61,12 +61,12 @@ function Card({ baebee, title, desc }: Props) {
 }
 
 const baebees: [string, string, string][] = [
-  ["https://reautydao.io/wp-content/uploads/Kid.png", "Pure Baebee","Baebee wishes the world full of love, purity, and sincerity, calling the beauty stakeholders should build a trustworthy beauty community in web3, share authentic information, read reviews, and trustful marketing; let's become a kid live in a pure beauty world."],
-  ["https://reautydao.io/wp-content/uploads/Leaf.png","Vegan Baebee","We are supporting vegan beauty,  the absence of animal ingredients, while cruelty-free refers to a product that doesn't test on animals; Vegan Baebee is on behalf of our Reauty Community to promote the Cruelty-Free concept!"],
-  ["https://reautydao.io/wp-content/uploads/Flower.png","Natural Baebee", "We are calling nature beauty to become the trend again, The natural beauty does not need to be achieved by doing or wearing something (performing plastic surgery, wearing makeup, getting a particular style). It can be simply applied to whatever in nature, including women; even when we offend it naturally, we celebrate the natural beauty with all!"],
-  ["https://reautydao.io/wp-content/uploads/Rainbow.png","LGBTQ+ Baebee", "Baebee believes the beauty community is an open, inclusive, and diverse place where everyone is welcome.  Live true to yourself and be yourself in our transparent and inclusive beauty community."],
-  ["https://reautydao.io/wp-content/uploads/Fish.png", "Ocean Baebee", "Blue presents the ocean; we need clean water to produce the safety beauty product and create a clean, free, and no-contaminated water environment with Baebee!"],
-  ["https://reautydao.io/wp-content/uploads/Cat.png","Happy Baebee", "Baebee wishes to bring joy into the world, and music is the way to deliver happy energy for everyone! Join Beabee's happy world and enjoy the music, joy, and blessings together!"]
+  [require('./Kid.png'), "Pure Baebee","Baebee wishes the world full of love, purity, and sincerity, calling the beauty stakeholders should build a trustworthy beauty community in web3, share authentic information, read reviews, and trustful marketing; let's become a kid live in a pure beauty world."],
+  [require('./Leaf.png'),"Vegan Baebee","We are supporting vegan beauty,  the absence of animal ingredients, while cruelty-free refers to a product that doesn't test on animals; Vegan Baebee is on behalf of our Reauty Community to promote the Cruelty-Free concept!"],
+  [require('./Flower.png'),"Natural Baebee", "We are calling nature beauty to become the trend again, The natural beauty does not need to be achieved by doing or wearing something (performing plastic surgery, wearing makeup, getting a particular style). It can be simply applied to whatever in nature, including women; even when we offend it naturally, we celebrate the natural beauty with all!"],
+  [require('./Rainbow.png'),"LGBTQ+ Baebee", "Baebee believes the beauty community is an open, inclusive, and diverse place where everyone is welcome.  Live true to yourself and be yourself in our transparent and inclusive beauty community."],
+  [require('./Fish.png'), "Ocean Baebee", "Blue presents the ocean; we need clean water to produce the safety beauty product and create a clean, free, and no-contaminated water environment with Baebee!"],
+  [require('./Cat.png'),"Happy Baebee", "Baebee wishes to bring joy into the world, and music is the way to deliver happy energy for everyone! Join Beabee's happy world and enjoy the music, joy, and blessings together!"]
 ];
 
 

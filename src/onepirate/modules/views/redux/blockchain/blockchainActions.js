@@ -118,9 +118,9 @@ export const connect = () => {
             ethereum.on("accountsChanged", (accounts) => {
               dispatch(updateAccount(accounts[0]));
             });
-            ethereum.on("chainChanged", () => {
-              window.location.reload();
-            });
+            // ethereum.on("chainChanged", () => {
+            //   window.location.reload();
+            // });
             // Add listeners end
             console.log("switched to MATIC network")
           } else {

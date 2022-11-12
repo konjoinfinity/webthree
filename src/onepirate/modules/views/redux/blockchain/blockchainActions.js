@@ -1,7 +1,5 @@
-// constants
 import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
-// log
 import { fetchData } from "../data/dataActions";
 
 const connectRequest = () => {
@@ -133,6 +131,7 @@ export const connect = () => {
       }
     } else {
       dispatch(connectFailed("Install Metamask."));
+      window.location.replace("https://metamask.app.link/dapp/baebee.reautydao.io");
     }
   };
 };

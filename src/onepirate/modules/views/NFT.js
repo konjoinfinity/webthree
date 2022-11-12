@@ -13,7 +13,10 @@ import { ethers } from "ethers";
 const { ethereum } = window;
 Contract.setProvider(ethereum);
 let web3 = new Web3(ethereum);
-const provider = new ethers.providers.Web3Provider(window.ethereum)
+let provider = {};
+if (window.ethereum && window.ethereum.isMetaMask) {
+  provider = new ethers.providers.Web3Provider(window.ethereum)
+}
 
 let txreceipt = "";
 let gasPrice = 0;
@@ -49,9 +52,8 @@ function NFT() {
     SHOW_BACKGROUND: false,
   });
 
-
   const claimNFTs = async() => {
-    let cost = CONFIG.WEI_COST;
+      let cost = CONFIG.WEI_COST;
     // let gasLimit = CONFIG.GAS_LIMIT;
     let gasLimit = lastBaseFeePerGas;
     let totalCostWei = String(cost * mintAmount);
@@ -127,16 +129,18 @@ web3.eth.sendTransaction({
   useEffect(() => {
     getConfig();
     async function getFee(){
-      let feeData = await provider.getFeeData();
-      console.log(feeData)
-      gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4));
-      lastBaseFeePerGas = Number(String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(0, -4));
-      maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4));
-      maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -4));
-      console.log(gasPrice);
-      console.log(lastBaseFeePerGas);
-      console.log(maxFeePerGas);
-      console.log(maxPriorityFeePerGas);
+      if (window.ethereum && window.ethereum.isMetaMask) {
+        let feeData = await provider.getFeeData();
+        console.log(feeData)
+        gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4));
+        lastBaseFeePerGas = Number(String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(0, -4));
+        maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4));
+        maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -4));
+        console.log(gasPrice);
+        console.log(lastBaseFeePerGas);
+        console.log(maxFeePerGas);
+        console.log(maxPriorityFeePerGas);
+      }
     }
     getFee();
   }, []);

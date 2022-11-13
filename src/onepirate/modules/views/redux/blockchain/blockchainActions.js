@@ -131,7 +131,7 @@ export const connect = () => {
       }
     } else {
       dispatch(connectFailed("Install Metamask."));
-      window.location.replace("https://metamask.app.link/dapp/baebee.reautydao.io");
+      // window.location.replace("https://metamask.app.link/dapp/baebee.reautydao.io");
     }
   };
 };

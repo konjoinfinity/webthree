@@ -54,7 +54,7 @@ function ProductHeroLayout(props) {
                   justifyContent: "center",
               }}>
         <img
-          src="https://reautydao.io/wp-content/uploads/2022/10/Group-1444.png"
+          src={require("./bee.png")}
           alt="Baebee"
           width="25%"
           height="25%"

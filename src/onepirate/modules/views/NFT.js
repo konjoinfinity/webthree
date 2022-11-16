@@ -9,6 +9,7 @@ import AddIcon from '@mui/icons-material/Add';
 import Contract from 'web3-eth-contract';
 import Web3 from "web3"
 import { ethers } from "ethers";
+import Alert from 'react-bootstrap/Alert';
 
 const { ethereum } = window;
 Contract.setProvider(ethereum);
@@ -25,6 +26,9 @@ let maxFeePerGas = 0;
 let maxPriorityFeePerGas = 0;
 
 function NFT() {
+  const [visible, setVisible] = useState(true);
+  const [show2Dmint, setShow2Dmint] = useState(true);
+  const [showPixelmint, setShowPixelmint] = useState(true);
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -52,8 +56,21 @@ function NFT() {
     SHOW_BACKGROUND: false,
   });
 
-  const claimNFTs = async() => {
-      let cost = CONFIG.WEI_COST;
+  const onDismiss = () => setVisible(false);
+  const onTrigger = () => setVisible(true);
+
+  const claimNFTs = async(a) => {
+    let cost = 0;
+    let contractAddress = "";
+    // eslint-disable-next-line
+    if (a == true) {
+      cost = 100000000000000000000;
+      contractAddress = "0x527F243B04fcaDaA6f6244F65d451bDeA8cBFa92"; //replace with pixel baebee contract address
+    } else {
+      cost = CONFIG.WEI_COST;
+      contractAddress = CONFIG.CONTRACT_ADDRESS;
+    }
+     // let cost = CONFIG.WEI_COST;
     // let gasLimit = CONFIG.GAS_LIMIT;
     let gasLimit = lastBaseFeePerGas;
     let totalCostWei = String(cost * mintAmount);
@@ -70,27 +87,36 @@ function NFT() {
     const abi = await abiResponse.json();
     console.log(abi)
 var contract = new Contract(abi, CONFIG.CONTRACT_ADDRESS);
-web3.eth.sendTransaction({
-  from: blockchain.account,
-  to: CONFIG.CONTRACT_ADDRESS,
-  data: contract.methods.mint(mintAmount).encodeABI(),
-  gasLimit: String(totalGasLimit),
-  value: totalCostWei,
-}).once("error", (err) => {
-    console.log(err);
-    setFeedback("Sorry, something went wrong please try again later.");
-    setClaimingNFT(false);
-  })
-  .then((receipt) => {
-    console.log(receipt);
-    txreceipt = "data";
-    setFeedback(
-      `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
-    );
-    setClaimingNFT(false);
-    dispatch(fetchData(blockchain.account));
-    console.log(blockchain);
-  });
+try {
+  await web3.eth
+        .sendTransaction({
+          from: blockchain.account,
+          to: contractAddress,
+          data: contract.methods.mint(mintAmount).encodeABI(),
+          gasLimit: String(totalGasLimit),
+          value: totalCostWei,
+        })
+        .once("error", (err) => {
+          if (visible === false) {
+            onTrigger();
+          }
+          setFeedback(err.message);
+          console.log(err);
+          setClaimingNFT(false);
+        })
+        .then((receipt) => {
+          console.log(receipt);
+          txreceipt = "data";
+          setFeedback(
+            `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
+          );
+          setClaimingNFT(false);
+          dispatch(fetchData(blockchain.account));
+          console.log(blockchain);
+        });
+  } catch (err) {
+  console.log(err);
+}
   };
 
   const decrementMintAmount = () => {
@@ -109,13 +135,16 @@ web3.eth.sendTransaction({
     setMintAmount(newMintAmount);
   };
 
-  const getData = async() => {
+  const getData = async () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
+      setFeedback("Wallet connected, click 'MINT' to mint an NFT.");
+      console.log(show2Dmint);
+      console.log(showPixelmint);
     }
     // window.open("https://metamask.app.link/send/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A@137?value=5e19");
     var isSafari = window.safari !== undefined;
-if (isSafari) console.log("Safari, yeah!");
+    if (isSafari) console.log("Safari, yeah!");
   };
 
   const getConfig = async () => {
@@ -155,6 +184,9 @@ if (isSafari) console.log("Safari, yeah!");
 
   return (
     <div>
+    {/* eslint-disable-next-line */}
+    {show2Dmint == true ? (
+    <div>
       {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
         <>
           <Typography
@@ -185,6 +217,17 @@ if (isSafari) console.log("Safari, yeah!");
           {blockchain.account === "" || blockchain.smartContract === null ? (
             <div ai={"center"} jc={"center"}>
               <br />
+              {blockchain.errorMsg !== "" ? (
+                              <>
+                                <Alert
+                                  color="info"
+                                  isOpen={visible}
+                                  toggle={onDismiss}
+                                >
+                                  {blockchain.errorMsg}
+                                </Alert>
+                              </>
+                            ) : null}
               <Button variant="contained"
               color="secondary"
               size="large"
@@ -192,39 +235,40 @@ if (isSafari) console.log("Safari, yeah!");
                   e.preventDefault();
                   dispatch(connect());
                   getData();
+                  if (visible === false) {
+                    onTrigger();
+                  }
                 }}
               >
                 Connect Your Wallet
               </Button>
-              {blockchain.errorMsg !== "" ? (
-                <>
-                  <br />
-                  <Typography
-                    style={{
-                      textAlign: "center",
-                      color: "var(--accent-text)",
-                    }}
-                  >
-                    {blockchain.errorMsg}
-                  </Typography>
-                </>
-              ) : null}
             </div>
           ) : (
             <>
-              <Typography>
-                {feedback}
-                {txreceipt !== "" ? (
-                  <a
-                    href={"https://opensea.io/collection/beauty-baebee-nft"}
-                    rel="nofollow"
-                  >
-                    Opensea
-                  </a>
-                ) : (
-                  ""
-                )}
-              </Typography>
+              {feedback !==
+                            `Click to mint your Beauty Baebee NFT` ? (
+                              <Alert
+                                color="info"
+                                isOpen={visible}
+                                toggle={onDismiss}
+                              >
+                                {feedback}
+                              </Alert>
+                            ) : (
+                              ""
+                            )}
+                            {txreceipt !== "" ? (
+                              <a
+                                href={
+                                  "https://opensea.io/collection/beauty-baebee-nft"
+                                }
+                                rel="nofollow"
+                              >
+                                Opensea
+                              </a>
+                            ) : (
+                              ""
+                            )}
               <br />
                {/* eslint-disable-next-line */}
               <div style={{alignItems: "center", justifyContent: "center", flexDirection: "row", display: "flex", justifyContent: "space-evenly"}}>
@@ -267,6 +311,9 @@ if (isSafari) console.log("Safari, yeah!");
                     e.preventDefault();
                     claimNFTs(false);
                     getData();
+                    if (visible === false) {
+                      onTrigger();
+                    }
                   }}
                 >
                   {claimingNFT ? "MINTING..." : `MINT - ${50*mintAmount} MATIC`}
@@ -276,6 +323,8 @@ if (isSafari) console.log("Safari, yeah!");
           )}
         </>
       )}
+    </div>
+    ):("")}
     </div>
   );
 }

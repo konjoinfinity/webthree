@@ -6,7 +6,6 @@ import Button from '@mui/material/Button';
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchData } from "./redux/data/dataActions";
-import { connect } from "./redux/blockchain/blockchainActions";
 import Typography from '../components/Typography';
 
 
@@ -78,14 +77,9 @@ function AppAppBar() {
           <Button
         color="secondary"
         variant="contained"
-        size="medium"
-        onClick={(e) => {
-          e.preventDefault();
-          dispatch(connect());
-          getData();
-        }}>
+        size="medium">
            <Typography style={{fontSize: "1.3vh"}}>
-        Connect Wallet
+        No Wallet Connected
         </Typography>
       </Button>
           ) : (

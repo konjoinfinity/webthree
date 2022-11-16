@@ -11,12 +11,14 @@ import withRoot from './modules/withRoot';
 import Animation from './modules/views/Animation.tsx';
 import Typography from './modules/components/Typography';
 import Specs from "./modules/views/Specs"
+import Pixel from './modules/views/Pixel';
 
 function Index() {
   return (
     <React.Fragment>
       <AppAppBar />
       <ProductHero />
+      <Pixel />
       <ProductValues />
       <div style={{backgroundColor: "#FEF7E9", padding: "5%"}}>
       <Typography variant="h4" marked="center" align="center" component="h2">

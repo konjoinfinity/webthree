@@ -13,10 +13,11 @@ import AddIcon from "@mui/icons-material/Add";
 import Contract from "web3-eth-contract";
 import Web3 from "web3";
 import { ethers } from "ethers";
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import Collapse from '@mui/material/Collapse';
-import CloseIcon from '@mui/icons-material/Close';
+import Alert from "@mui/material/Alert";
+import IconButton from "@mui/material/IconButton";
+import Collapse from "@mui/material/Collapse";
+import CloseIcon from "@mui/icons-material/Close";
+import "./Hero.css"
 
 const { ethereum } = window;
 Contract.setProvider(ethereum);
@@ -37,6 +38,7 @@ const pixelImage = require("./pix.png");
 
 export default function ProductHero() {
   const [open, setOpen] = useState(true);
+  const [showLoader, setshowLoader] = useState(false);
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -69,7 +71,7 @@ export default function ProductHero() {
   const claimNFTs = async (a) => {
     let cost = 0;
     let contractAddress = "";
-    console.log(a)
+    console.log(a);
     // eslint-disable-next-line
     if (a == true) {
       cost = 100000000000000000000;
@@ -80,11 +82,11 @@ export default function ProductHero() {
     }
     // let cost = CONFIG.WEI_COST;
     // let gasLimit = CONFIG.GAS_LIMIT;
-    let gasLimit = gasPrice;
+    let gasLimit = lastBaseFeePerGas;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit);
     setClaimingNFT(true);
-    
+
     const abiResponse = await fetch("/config/abi.json", {
       headers: {
         "Content-Type": "application/json",
@@ -143,11 +145,13 @@ export default function ProductHero() {
   const getData = async () => {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
+      setshowLoader(false)
       setFeedback("Wallet connected, click 'MINT' to mint an NFT.");
     }
     // window.open("https://metamask.app.link/send/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A@137?value=5e19");
-    var isSafari = window.safari !== undefined;
-    if (isSafari) console.log("Safari, yeah!");
+    // var isSafari = window.safari !== undefined;
+    // if (isSafari) console.log("Safari, yeah!");
+
   };
 
   const getConfig = async () => {
@@ -258,19 +262,56 @@ export default function ProductHero() {
                 <br />
                 {blockchain.account === "" ||
                 blockchain.smartContract === null ? (
-                  <div ai={"center"} jc={"center"}>
-                    <br />
-                    <p>
-                      {blockchain.errorMsg !== "" ? (
-                        <div>{blockchain.errorMsg}</div>
-                      ) : null}
-                    </p>
+                  <div style={{
+                    alignItems: "center",
+                    justifyContent: "space-evenly",
+                    flexDirection: "column",
+                    display: "flex",
+                  }}>
+                                {blockchain.errorMsg !== "" ? (
+                                  <Box sx={{ width: "100%" }}>
+                                  <Collapse in={open}>
+                                    <Alert
+                                      color={"info"}
+                                      icon={false}
+                                      action={
+                                        <IconButton
+                                          aria-label="close"
+                                          color="primary"
+                                          size="small"
+                                          onClick={() => {
+                                            setOpen(false);
+                                          }}
+                                        >
+                                          <CloseIcon
+                                            fontSize="inherit"
+                                            color="primary"
+                                          />
+                                        </IconButton>
+                                      }
+                                      sx={{ mb: 2 }}
+                                    >
+                                      {blockchain.errorMsg}
+                                      </Alert>
+                            </Collapse>
+                          </Box>
+                                ) : null}
+                                {showLoader ? 
+                              <div className="showbox">
+                              <div className="loader">
+                                <svg className="circular" viewBox="25 25 50 50">
+                                  <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
+                                </svg>
+                              </div>
+                            </div>
+                            : ""}
                     <Button
                       variant="contained"
                       color="secondary"
                       size="large"
                       onClick={(e) => {
                         e.preventDefault();
+                        setshowLoader(true)
                         dispatch(connect(false));
                         setShowPixelmint(false);
                         getData();
@@ -281,37 +322,52 @@ export default function ProductHero() {
                   </div>
                 ) : (
                   <>
-                   <Box sx={{ width: '100%' }}>
-      <Collapse in={open}>
-        <Alert
-        color="info"
-        icon={false}
-          action={
-            <IconButton
-              aria-label="close"
-              color="primary"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}>
-              <CloseIcon fontSize="inherit" color="primary" />
-            </IconButton>
-          }
-          sx={{ mb: 2, }}>
-          {feedback !== "" ? <div>{feedback}</div> : ""}
-                    {txreceipt !== "" ? (
-                      <a
-                        href={"https://opensea.io/collection/beauty-baebee-nft"}
-                        rel="nofollow"
-                      >
-                        Opensea
-                      </a>
-                    ) : (
-                      ""
-                    )}
-        </Alert>
-      </Collapse>
-    </Box>
+                  {feedback !== "" ? 
+                    <Box sx={{ width: "100%" }}>
+                      <Collapse in={open}>
+                        <Alert
+                          color="info"
+                          icon={false}
+                          action={
+                            <IconButton
+                              aria-label="close"
+                              color="primary"
+                              size="small"
+                              onClick={() => {
+                                setOpen(false);
+                              }}
+                            >
+                              <CloseIcon fontSize="inherit" color="primary" />
+                            </IconButton>
+                          }
+                          sx={{ mb: 2 }}
+                        >
+                          {feedback} 
+                          {txreceipt !== "" ? (
+                            <a
+                              href={
+                                "https://opensea.io/collection/beauty-baebee-nft"
+                              }
+                              rel="nofollow"
+                            >
+                              Opensea
+                            </a>
+                          ) : (
+                            ""
+                          )}
+                        </Alert>
+                      </Collapse>
+                    </Box>
+                    : ""}
+                     {claimingNFT ? 
+                              <div className="showbox">
+                              <div className="loader">
+                                <svg className="circular" viewBox="25 25 50 50">
+                                  <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
+                                </svg>
+                              </div>
+                            </div>
+                            : ""}
                     <br />
                     {/* eslint-disable-next-line */}
                     <div
@@ -323,9 +379,9 @@ export default function ProductHero() {
                       }}
                     >
                       <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
+                        variant="contained"
+                        color="primary"
+                        size="large"
                         style={{ padding: "1.5em" }}
                         disabled={claimingNFT ? true : false}
                         onClick={(e) => {
@@ -345,9 +401,9 @@ export default function ProductHero() {
                         {mintAmount}
                       </Typography>
                       <Button
-                      variant="contained"
-                      color="primary"
-                      size="large"
+                        variant="contained"
+                        color="primary"
+                        size="large"
                         style={{ padding: "1.5em" }}
                         disabled={claimingNFT ? true : false}
                         onClick={(e) => {
@@ -499,13 +555,41 @@ export default function ProductHero() {
                       <br />
                       {blockchain.account === "" ||
                       blockchain.smartContract === null ? (
-                        <div ai={"center"} jc={"center"}>
+                        <div style={{
+                          alignItems: "center",
+                          justifyContent: "space-evenly",
+                          flexDirection: "column",
+                          display: "flex",
+                        }}>
                           <br />
-                          <p>
-                            {blockchain.errorMsg !== "" ? (
-                              <div>{blockchain.errorMsg}</div>
-                            ) : null}
-                          </p>
+                          {blockchain.errorMsg !== "" ? (
+                                  <Box sx={{ width: "100%" }}>
+                                  <Collapse in={open}>
+                                    <Alert
+                                      color={"info"}
+                                      icon={false}
+                                      action={
+                                        <IconButton
+                                          aria-label="close"
+                                          color="primary"
+                                          size="small"
+                                          onClick={() => {
+                                            setOpen(false);
+                                          }}
+                                        >
+                                          <CloseIcon
+                                            fontSize="inherit"
+                                            color="primary"
+                                          />
+                                        </IconButton>
+                                      }
+                                      sx={{ mb: 2 }}
+                                    >
+                                      {blockchain.errorMsg}
+                                      </Alert>
+                            </Collapse>
+                          </Box>
+                                ) : null}
                           <Button
                             variant="contained"
                             color="secondary"
@@ -522,43 +606,44 @@ export default function ProductHero() {
                         </div>
                       ) : (
                         <>
-
-
-<Box sx={{ width: '100%' }}>
-      <Collapse in={open}>
-        <Alert
-        color={"info"}
-        icon={false}
-          action={
-            <IconButton
-              aria-label="close"
-              color="primary"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}>
-              <CloseIcon fontSize="inherit" color="primary" />
-            </IconButton>
-          }
-          sx={{ mb: 2, }}>
-                          {feedback !== ""
-                            ? <div>{feedback}</div>
-                            : ""}
-                          {txreceipt !== "" ? (
-                            <a
-                              href={
-                                "https://opensea.io/collection/beauty-baebee-nft"
-                              }
-                              rel="nofollow"
-                            >
-                              Opensea
-                            </a>
-                          ) : (
-                            ""
-                          )}
-                          </Alert>
-      </Collapse>
-    </Box>
+                          <Box sx={{ width: "100%" }}>
+                            <Collapse in={open}>
+                              <Alert
+                                color={"info"}
+                                icon={false}
+                                action={
+                                  <IconButton
+                                    aria-label="close"
+                                    color="primary"
+                                    size="small"
+                                    onClick={() => {
+                                      setOpen(false);
+                                    }}
+                                  >
+                                    <CloseIcon
+                                      fontSize="inherit"
+                                      color="primary"
+                                    />
+                                  </IconButton>
+                                }
+                                sx={{ mb: 2 }}
+                              >
+                                {feedback !== "" ? <div>{feedback}</div> : ""}
+                                {txreceipt !== "" ? (
+                                  <a
+                                    href={
+                                      "https://opensea.io/collection/beauty-baebee-nft"
+                                    }
+                                    rel="nofollow"
+                                  >
+                                    Opensea
+                                  </a>
+                                ) : (
+                                  ""
+                                )}
+                              </Alert>
+                            </Collapse>
+                          </Box>
                           <br />
                           {/* eslint-disable-next-line */}
                           <div
@@ -570,9 +655,9 @@ export default function ProductHero() {
                             }}
                           >
                             <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
+                              variant="contained"
+                              color="primary"
+                              size="large"
                               style={{ padding: "1.5em" }}
                               disabled={claimingNFT ? true : false}
                               onClick={(e) => {
@@ -592,9 +677,9 @@ export default function ProductHero() {
                               {mintAmount}
                             </Typography>
                             <Button
-                            variant="contained"
-                            color="primary"
-                            size="large"
+                              variant="contained"
+                              color="primary"
+                              size="large"
                               style={{ padding: "1.5em" }}
                               disabled={claimingNFT ? true : false}
                               onClick={(e) => {
@@ -623,7 +708,9 @@ export default function ProductHero() {
                                 e.preventDefault();
                                 claimNFTs(true);
                                 getData();
-                                setFeedback(`Minting your Pixelated Beauty Baebee...`);
+                                setFeedback(
+                                  `Minting your Pixelated Beauty Baebee...`
+                                );
                               }}
                             >
                               {claimingNFT

@@ -148,7 +148,7 @@ export const connect = (nft) => {
           }
         }
       } catch (err) {
-        dispatch(connectFailed("Something went wrong."));
+        dispatch(connectFailed(err.message));
         console.log(err)
       }
     } else {

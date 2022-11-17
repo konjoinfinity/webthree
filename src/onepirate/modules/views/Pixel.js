@@ -2,11 +2,15 @@ import * as React from 'react';
 import Typography from '../components/Typography';
 import PixelLayout from './PixelLayout';
 import NFT from "./NFT"
+import storage from "../views/redux/storage"
+
+var display = storage.getState();
 
 const backgroundImage =
   require('./pix.png')
 
 export default function Pixel() {
+    console.log(display)
   return (
     <div>
     <PixelLayout
@@ -30,7 +34,7 @@ export default function Pixel() {
         Mint your Pixelated Baebee today!
       </Typography>
       {/* eslint-disable-next-line */}
-      {pixel == true ? <NFT /> : ""}
+      {display.show == "both" || "pixel" ? <NFT /> : ""}
       <Typography variant="body2" color="inherit"  marked="center" style={{fontSize: "2vh", paddingTop: "1vh"}}>
         Discover the experience
       </Typography>

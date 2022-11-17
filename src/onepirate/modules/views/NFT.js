@@ -9,7 +9,8 @@ import AddIcon from '@mui/icons-material/Add';
 import Contract from 'web3-eth-contract';
 import Web3 from "web3"
 import { ethers } from "ethers";
-import Alert from 'react-bootstrap/Alert';
+
+var display = storage.getState();
 
 const { ethereum } = window;
 Contract.setProvider(ethereum);
@@ -26,9 +27,6 @@ let maxFeePerGas = 0;
 let maxPriorityFeePerGas = 0;
 
 function NFT() {
-  const [visible, setVisible] = useState(true);
-  const [show2Dmint, setShow2Dmint] = useState(true);
-  const [showPixelmint, setShowPixelmint] = useState(true);
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -55,9 +53,6 @@ function NFT() {
     MARKETPLACE_LINK: "",
     SHOW_BACKGROUND: false,
   });
-
-  const onDismiss = () => setVisible(false);
-  const onTrigger = () => setVisible(true);
 
   const claimNFTs = async(a) => {
     let cost = 0;
@@ -97,9 +92,6 @@ try {
           value: totalCostWei,
         })
         .once("error", (err) => {
-          if (visible === false) {
-            onTrigger();
-          }
           setFeedback(err.message);
           console.log(err);
           setClaimingNFT(false);
@@ -139,8 +131,6 @@ try {
     if (blockchain.account !== "" && blockchain.smartContract !== null) {
       dispatch(fetchData(blockchain.account));
       setFeedback("Wallet connected, click 'MINT' to mint an NFT.");
-      console.log(show2Dmint);
-      console.log(showPixelmint);
     }
     // window.open("https://metamask.app.link/send/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A@137?value=5e19");
     var isSafari = window.safari !== undefined;
@@ -184,9 +174,6 @@ try {
 
   return (
     <div>
-    {/* eslint-disable-next-line */}
-    {show2Dmint == true ? (
-    <div>
       {Number(data.totalSupply) >= CONFIG.MAX_SUPPLY ? (
         <>
           <Typography
@@ -219,13 +206,9 @@ try {
               <br />
               {blockchain.errorMsg !== "" ? (
                               <>
-                                <Alert
-                                  color="info"
-                                  isOpen={visible}
-                                  toggle={onDismiss}
-                                >
+                              
                                   {blockchain.errorMsg}
-                                </Alert>
+                              
                               </>
                             ) : null}
               <Button variant="contained"
@@ -235,9 +218,7 @@ try {
                   e.preventDefault();
                   dispatch(connect());
                   getData();
-                  if (visible === false) {
-                    onTrigger();
-                  }
+                  showSwitch("baebee");
                 }}
               >
                 Connect Your Wallet
@@ -247,13 +228,9 @@ try {
             <>
               {feedback !==
                             `Click to mint your Beauty Baebee NFT` ? (
-                              <Alert
-                                color="info"
-                                isOpen={visible}
-                                toggle={onDismiss}
-                              >
+                              
                                 {feedback}
-                              </Alert>
+                            
                             ) : (
                               ""
                             )}
@@ -311,9 +288,6 @@ try {
                     e.preventDefault();
                     claimNFTs(false);
                     getData();
-                    if (visible === false) {
-                      onTrigger();
-                    }
                   }}
                 >
                   {claimingNFT ? "MINTING..." : `MINT - ${50*mintAmount} MATIC`}
@@ -323,8 +297,6 @@ try {
           )}
         </>
       )}
-    </div>
-    ):("")}
     </div>
   );
 }

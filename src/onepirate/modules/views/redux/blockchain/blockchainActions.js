@@ -29,23 +29,44 @@ const updateAccountRequest = (payload) => {
   };
 };
 
-export const connect = () => {
+export const connect = (nft) => {
   return async (dispatch) => {
     dispatch(connectRequest());
-    const abiResponse = await fetch("/config/abi.json", {
+    let abiResponse = {};
+    let abi = {};
+    let configResponse = {};
+    // eslint-disable-next-line 
+    if(nft == false) {
+    abiResponse = await fetch("/config/abi.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
     });
-    const abi = await abiResponse.json();
-    const configResponse = await fetch("/config/config.json", {
+    abi = await abiResponse.json();
+    configResponse = await fetch("/config/config.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
     });
+  } else {
+    abiResponse = await fetch("/config/pixelabi.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+    abi = await abiResponse.json();
+    configResponse = await fetch("/config/pixelconfig.json", {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+  }
     const CONFIG = await configResponse.json();
+    console.log(CONFIG)
     console.log("json is loaded")
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
@@ -123,6 +144,7 @@ export const connect = () => {
             console.log("switched to MATIC network")
           } else {
             dispatch(connectFailed("Something went wrong."));
+            console.log("test")
           }
         }
       } catch (err) {
@@ -130,8 +152,10 @@ export const connect = () => {
         console.log(err)
       }
     } else {
-      dispatch(connectFailed("Install Metamask."));
-      // window.location.replace("https://metamask.app.link/dapp/baebee.reautydao.io");
+      dispatch(connectFailed("Install the Metamask browser extension or use the Metamask app browser."));
+      setTimeout(function(){
+        window.location.replace("https://metamask.app.link/dapp/toxicbaebeemint.reautydao.io/");
+    }, 3000);
     }
   };
 };

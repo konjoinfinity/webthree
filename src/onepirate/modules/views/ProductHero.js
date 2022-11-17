@@ -13,6 +13,10 @@ import AddIcon from "@mui/icons-material/Add";
 import Contract from "web3-eth-contract";
 import Web3 from "web3";
 import { ethers } from "ethers";
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
+import CloseIcon from '@mui/icons-material/Close';
 
 const { ethereum } = window;
 Contract.setProvider(ethereum);
@@ -32,6 +36,7 @@ const backgroundImage = require("./baebee.png");
 const pixelImage = require("./pix.png");
 
 export default function ProductHero() {
+  const [open, setOpen] = useState(true);
   const dispatch = useDispatch();
   const blockchain = useSelector((state) => state.blockchain);
   const data = useSelector((state) => state.data);
@@ -79,7 +84,7 @@ export default function ProductHero() {
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit);
     setClaimingNFT(true);
-    setFeedback(`Minting your ${CONFIG.NFT_NAME}...`);
+    
     const abiResponse = await fetch("/config/abi.json", {
       headers: {
         "Content-Type": "application/json",
@@ -276,9 +281,24 @@ export default function ProductHero() {
                   </div>
                 ) : (
                   <>
-                    {feedback !== `Click to mint your Beauty Baebee NFT`
-                      ? <div>{feedback}</div>
-                      : ""}
+                   <Box sx={{ width: '100%' }}>
+      <Collapse in={open}>
+        <Alert
+        color="info"
+        icon={false}
+          action={
+            <IconButton
+              aria-label="close"
+              color="primary"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}>
+              <CloseIcon fontSize="inherit" color="primary" />
+            </IconButton>
+          }
+          sx={{ mb: 2, }}>
+          {feedback !== "" ? <div>{feedback}</div> : ""}
                     {txreceipt !== "" ? (
                       <a
                         href={"https://opensea.io/collection/beauty-baebee-nft"}
@@ -289,6 +309,9 @@ export default function ProductHero() {
                     ) : (
                       ""
                     )}
+        </Alert>
+      </Collapse>
+    </Box>
                     <br />
                     {/* eslint-disable-next-line */}
                     <div
@@ -301,7 +324,7 @@ export default function ProductHero() {
                     >
                       <Button
                       variant="contained"
-                      color="info"
+                      color="primary"
                       size="large"
                         style={{ padding: "1.5em" }}
                         disabled={claimingNFT ? true : false}
@@ -323,7 +346,7 @@ export default function ProductHero() {
                       </Typography>
                       <Button
                       variant="contained"
-                      color="info"
+                      color="primary"
                       size="large"
                         style={{ padding: "1.5em" }}
                         disabled={claimingNFT ? true : false}
@@ -353,6 +376,7 @@ export default function ProductHero() {
                           e.preventDefault();
                           claimNFTs(false);
                           getData();
+                          setFeedback(`Minting your Beauty Baebee...`);
                         }}
                       >
                         {claimingNFT
@@ -498,7 +522,26 @@ export default function ProductHero() {
                         </div>
                       ) : (
                         <>
-                          {feedback !== `Click to mint your Beauty Baebee NFT`
+
+
+<Box sx={{ width: '100%' }}>
+      <Collapse in={open}>
+        <Alert
+        color={"info"}
+        icon={false}
+          action={
+            <IconButton
+              aria-label="close"
+              color="primary"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}>
+              <CloseIcon fontSize="inherit" color="primary" />
+            </IconButton>
+          }
+          sx={{ mb: 2, }}>
+                          {feedback !== ""
                             ? <div>{feedback}</div>
                             : ""}
                           {txreceipt !== "" ? (
@@ -513,6 +556,9 @@ export default function ProductHero() {
                           ) : (
                             ""
                           )}
+                          </Alert>
+      </Collapse>
+    </Box>
                           <br />
                           {/* eslint-disable-next-line */}
                           <div
@@ -525,7 +571,7 @@ export default function ProductHero() {
                           >
                             <Button
                             variant="contained"
-                            color="info"
+                            color="primary"
                             size="large"
                               style={{ padding: "1.5em" }}
                               disabled={claimingNFT ? true : false}
@@ -547,7 +593,7 @@ export default function ProductHero() {
                             </Typography>
                             <Button
                             variant="contained"
-                            color="info"
+                            color="primary"
                             size="large"
                               style={{ padding: "1.5em" }}
                               disabled={claimingNFT ? true : false}
@@ -577,6 +623,7 @@ export default function ProductHero() {
                                 e.preventDefault();
                                 claimNFTs(true);
                                 getData();
+                                setFeedback(`Minting your Pixelated Beauty Baebee...`);
                               }}
                             >
                               {claimingNFT

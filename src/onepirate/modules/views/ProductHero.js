@@ -294,12 +294,15 @@ export default function ProductHero() {
                     <div
                       style={{
                         alignItems: "center",
-                        justifyContent: "center",
+                        justifyContent: "space-evenly",
                         flexDirection: "row",
                         display: "flex",
                       }}
                     >
-                      <button
+                      <Button
+                      variant="contained"
+                      color="info"
+                      size="large"
                         style={{ padding: "1.5em" }}
                         disabled={claimingNFT ? true : false}
                         onClick={(e) => {
@@ -308,7 +311,7 @@ export default function ProductHero() {
                         }}
                       >
                         <RemoveIcon />
-                      </button>
+                      </Button>
                       <Typography
                         style={{
                           textAlign: "center",
@@ -318,7 +321,10 @@ export default function ProductHero() {
                       >
                         {mintAmount}
                       </Typography>
-                      <button
+                      <Button
+                      variant="contained"
+                      color="info"
+                      size="large"
                         style={{ padding: "1.5em" }}
                         disabled={claimingNFT ? true : false}
                         onClick={(e) => {
@@ -327,13 +333,13 @@ export default function ProductHero() {
                         }}
                       >
                         <AddIcon />
-                      </button>
+                      </Button>
                     </div>
                     <br />
                     <div
                       style={{
                         alignItems: "center",
-                        justifyContent: "center",
+                        justifyContent: "space-evenly",
                         flexDirection: "row",
                         display: "flex",
                       }}
@@ -512,12 +518,15 @@ export default function ProductHero() {
                           <div
                             style={{
                               alignItems: "center",
-                              justifyContent: "center",
+                              justifyContent: "space-evenly",
                               flexDirection: "row",
                               display: "flex",
                             }}
                           >
-                            <button
+                            <Button
+                            variant="contained"
+                            color="info"
+                            size="large"
                               style={{ padding: "1.5em" }}
                               disabled={claimingNFT ? true : false}
                               onClick={(e) => {
@@ -526,7 +535,7 @@ export default function ProductHero() {
                               }}
                             >
                               <RemoveIcon />
-                            </button>
+                            </Button>
                             <Typography
                               style={{
                                 textAlign: "center",
@@ -536,7 +545,10 @@ export default function ProductHero() {
                             >
                               {mintAmount}
                             </Typography>
-                            <button
+                            <Button
+                            variant="contained"
+                            color="info"
+                            size="large"
                               style={{ padding: "1.5em" }}
                               disabled={claimingNFT ? true : false}
                               onClick={(e) => {
@@ -545,7 +557,7 @@ export default function ProductHero() {
                               }}
                             >
                               <AddIcon />
-                            </button>
+                            </Button>
                           </div>
                           <br />
                           <div

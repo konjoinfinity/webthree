@@ -35,43 +35,43 @@ export const connect = (nft) => {
     let abiResponse = {};
     let abi = {};
     let configResponse = {};
-    // eslint-disable-next-line 
-    if(nft == false) {
-    abiResponse = await fetch("/config/abi.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    abi = await abiResponse.json();
-    configResponse = await fetch("/config/config.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-  } else {
-    abiResponse = await fetch("/config/pixelabi.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    abi = await abiResponse.json();
-    configResponse = await fetch("/config/pixelconfig.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-  }
+    // eslint-disable-next-line
+    if (nft == false) {
+      abiResponse = await fetch("/config/abi.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      abi = await abiResponse.json();
+      configResponse = await fetch("/config/config.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+    } else {
+      abiResponse = await fetch("/config/pixelabi.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+      abi = await abiResponse.json();
+      configResponse = await fetch("/config/pixelconfig.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      });
+    }
     const CONFIG = await configResponse.json();
-    console.log(CONFIG)
-    console.log("json is loaded")
+    console.log(CONFIG);
+    console.log("json is loaded");
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
-      console.log("metamask is installed")
+      console.log("metamask is installed");
       Web3EthContract.setProvider(ethereum);
       let web3 = new Web3(ethereum);
       try {
@@ -81,16 +81,16 @@ export const connect = (nft) => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        console.log(networkId)
-        console.log(CONFIG.NETWORK.ID)
-        // eslint-disable-next-line 
+        console.log(networkId);
+        console.log(CONFIG.NETWORK.ID);
+        // eslint-disable-next-line
         if (networkId == CONFIG.NETWORK.ID) {
-          console.log("network ids match")
+          console.log("network ids match");
           const SmartContractObj = new Web3EthContract(
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
-          console.log(SmartContractObj)
+          console.log(SmartContractObj);
           dispatch(
             connectSuccess({
               account: accounts[0],
@@ -106,7 +106,7 @@ export const connect = (nft) => {
             window.location.reload();
           });
           // Add listeners end
-          console.log("wallet connection success")
+          console.log("wallet connection success");
         } else {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
           const chId = Web3.utils.toHex("137");
@@ -120,7 +120,7 @@ export const connect = (nft) => {
           const networkId = await ethereum.request({
             method: "net_version",
           });
-          // eslint-disable-next-line 
+          // eslint-disable-next-line
           if (networkId == CONFIG.NETWORK.ID) {
             const SmartContractObj = new Web3EthContract(
               abi,
@@ -141,21 +141,26 @@ export const connect = (nft) => {
             //   window.location.reload();
             // });
             // Add listeners end
-            console.log("switched to MATIC network")
+            console.log("switched to MATIC network");
           } else {
-            dispatch(connectFailed("Something went wrong."));
-            console.log("test")
+            dispatch(connectFailed("Unable to connect to MATIC network"));
           }
         }
       } catch (err) {
         dispatch(connectFailed(err.message));
-        console.log(err)
+        console.log(err);
       }
     } else {
-      dispatch(connectFailed("Install the Metamask browser extension or use the Metamask app browser."));
-      setTimeout(function(){
-        window.location.replace("https://metamask.app.link/dapp/toxicbaebeemint.reautydao.io/");
-    }, 3000);
+      dispatch(
+        connectFailed(
+          "Install the Metamask browser extension or use the Metamask app browser."
+        )
+      );
+      setTimeout(function () {
+        window.location.replace(
+          "https://metamask.app.link/dapp/toxicbaebeemint.reautydao.io/"
+        );
+      }, 3000);
     }
   };
 };

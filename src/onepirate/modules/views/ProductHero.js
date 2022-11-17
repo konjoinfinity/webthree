@@ -64,17 +64,18 @@ export default function ProductHero() {
   const claimNFTs = async (a) => {
     let cost = 0;
     let contractAddress = "";
+    console.log(a)
     // eslint-disable-next-line
     if (a == true) {
       cost = 100000000000000000000;
-      contractAddress = "0x527F243B04fcaDaA6f6244F65d451bDeA8cBFa92"; //replace with pixel baebee contract address
+      contractAddress = "0xd588563aff5E99F3960735D6096CDB451edBB19A";
     } else {
       cost = CONFIG.WEI_COST;
       contractAddress = CONFIG.CONTRACT_ADDRESS;
     }
     // let cost = CONFIG.WEI_COST;
     // let gasLimit = CONFIG.GAS_LIMIT;
-    let gasLimit = lastBaseFeePerGas;
+    let gasLimit = gasPrice;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit);
     setClaimingNFT(true);
@@ -562,7 +563,7 @@ export default function ProductHero() {
                               disabled={claimingNFT ? true : false}
                               onClick={(e) => {
                                 e.preventDefault();
-                                claimNFTs(false);
+                                claimNFTs(true);
                                 getData();
                               }}
                             >

@@ -1,0 +1,20 @@
+{
+    "CONTRACT_ADDRESS": "0xd588563aff5E99F3960735D6096CDB451edBB19A",
+    "SCAN_LINK": "https://polygonscan.com/address/0xd588563aff5e99f3960735d6096cdb451edbb19a",
+    "NETWORK": {
+      "NAME": "Polygon",
+      "SYMBOL": "Matic",
+      "ID": 137
+    },
+    "NFT_NAME": "Beauty Baebee Pixelated",
+    "SYMBOL": "BTYBAEBEEPX",
+    "MAX_SUPPLY": 1000,
+    "WEI_COST": 100000000000000000000,
+    "DISPLAY_COST": 100,
+    "GAS_LIMIT": 6000000,
+    "MARKETPLACE": "Opeansea",
+    "MARKETPLACE_LINK": "https://opensea.io/collection/beauty-baebee-pixelated",
+    "SHOW_BACKGROUND": true
+  }
+  
+  

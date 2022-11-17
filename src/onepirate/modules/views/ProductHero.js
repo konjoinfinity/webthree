@@ -289,7 +289,7 @@ export default function ProductHero() {
                                           />
                                         </IconButton>
                                       }
-                                      sx={{ mb: 2 }}
+                                      sx={{ mb: 2, fontSize: "1.8vh" }}
                                     >
                                       {blockchain.errorMsg}
                                       </Alert>
@@ -306,6 +306,7 @@ export default function ProductHero() {
                             </div>
                             : ""}
                     <Button
+                    sx={{fontSize: "2vh"}}
                       variant="contained"
                       color="secondary"
                       size="large"
@@ -340,7 +341,7 @@ export default function ProductHero() {
                               <CloseIcon fontSize="inherit" color="primary" />
                             </IconButton>
                           }
-                          sx={{ mb: 2 }}
+                          sx={{ mb: 2, fontSize: "1.8vh" }}
                         >
                           {feedback} 
                           {txreceipt !== "" ? (
@@ -359,7 +360,8 @@ export default function ProductHero() {
                       </Collapse>
                     </Box>
                     : ""}
-                     {claimingNFT ? 
+                    <br />
+                    {claimingNFT ? 
                               <div className="showbox">
                               <div className="loader">
                                 <svg className="circular" viewBox="25 25 50 50">
@@ -368,7 +370,6 @@ export default function ProductHero() {
                               </div>
                             </div>
                             : ""}
-                    <br />
                     {/* eslint-disable-next-line */}
                     <div
                       style={{
@@ -427,6 +428,7 @@ export default function ProductHero() {
                         variant="contained"
                         color="secondary"
                         size="large"
+                        sx={{fontSize: "2vh"}}
                         disabled={claimingNFT ? true : false}
                         onClick={(e) => {
                           e.preventDefault();
@@ -482,12 +484,12 @@ export default function ProductHero() {
         >
           <div
             style={{
-              maxWidth: "60vh",
-              maxHeight: "82vh",
+              maxWidth: "96vh",
+              maxHeight: "90vh",
               padding: "2%",
               backgroundColor: "#FEF7E9",
               opacity: 0.95,
-              marginTop: "8vh",
+              marginTop: "5vh",
               borderRadius: 5,
             }}
           >
@@ -505,10 +507,9 @@ export default function ProductHero() {
               <img
                 src={require("./bee.png")}
                 alt="Baebee"
-                width="25%"
-                height="25%"
+                width="20%"
+                height="20%"
               />
-              <br />
               <br />
               <Typography
                 color="inherit"
@@ -518,10 +519,6 @@ export default function ProductHero() {
                 style={{ fontSize: "4vh" }}
               >
                 Pixelated Beauty Baebee NFTs
-              </Typography>
-              <Typography color="inherit" align="center" variant="h5">
-                <br />
-                Mint your Pixelated Baebee today!
               </Typography>
               {/* eslint-disable-next-line */}
               {showPixelmint == true ? (
@@ -583,19 +580,30 @@ export default function ProductHero() {
                                           />
                                         </IconButton>
                                       }
-                                      sx={{ mb: 2 }}
+                                      sx={{ mb: 2, fontSize: "1.8vh" }}
                                     >
                                       {blockchain.errorMsg}
                                       </Alert>
                             </Collapse>
                           </Box>
                                 ) : null}
+                                {showLoader ? 
+                              <div className="showbox">
+                              <div className="loader">
+                                <svg className="circular" viewBox="25 25 50 50">
+                                  <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
+                                </svg>
+                              </div>
+                            </div>
+                            : ""}
                           <Button
+                          sx={{fontSize: "2vh"}}
                             variant="contained"
                             color="secondary"
                             size="large"
                             onClick={(e) => {
                               e.preventDefault();
+                              setshowLoader(true)
                               dispatch(connect(true));
                               setShow2Dmint(false);
                               getData();
@@ -626,7 +634,7 @@ export default function ProductHero() {
                                     />
                                   </IconButton>
                                 }
-                                sx={{ mb: 2 }}
+                                sx={{ mb: 2, fontSize: "1.8vh" }}
                               >
                                 {feedback !== "" ? <div>{feedback}</div> : ""}
                                 {txreceipt !== "" ? (
@@ -645,6 +653,15 @@ export default function ProductHero() {
                             </Collapse>
                           </Box>
                           <br />
+                          {claimingNFT ? 
+                              <div className="showbox">
+                              <div className="loader">
+                                <svg className="circular" viewBox="25 25 50 50">
+                                  <circle className="path" cx="50" cy="50" r="20" fill="none" strokeWidth="2" strokeMiterlimit="10"/>
+                                </svg>
+                              </div>
+                            </div>
+                            : ""}
                           {/* eslint-disable-next-line */}
                           <div
                             style={{
@@ -700,6 +717,7 @@ export default function ProductHero() {
                             }}
                           >
                             <Button
+                            sx={{fontSize: "2vh"}}
                               variant="contained"
                               color="secondary"
                               size="large"
@@ -735,7 +753,6 @@ export default function ProductHero() {
               >
                 Discover the experience
               </Typography>
-              <br />
               <Box
                 component="img"
                 src="https://img.icons8.com/ios-filled/344/down-squared--v1.png"

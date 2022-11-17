@@ -37,12 +37,12 @@ function ProductHeroLayout(props) {
         }}>
           <div
             style={{
-              maxWidth: "60vh",
-              maxHeight: "82vh",
+              maxWidth: "96%",
+              maxHeight: "95vh",
               padding: "2%",
               backgroundColor: "#FEF7E9",
               opacity: 0.95,
-              marginTop: "8vh",
+              marginTop: "5vh",
               borderRadius: 5
             }}>
               <div flex={1} style={{
@@ -56,12 +56,11 @@ function ProductHeroLayout(props) {
         <img
           src="https://reautydao.io/wp-content/uploads/2022/10/Group-1444.png"
           alt="Baebee"
-          width="25%"
-          height="25%"
+          width="20%"
+          height="20%"
         />
-        <br /><br />
-        {children}
         <br />
+        {children}
         <Box
           component="img"
           src="https://img.icons8.com/ios-filled/344/down-squared--v1.png"

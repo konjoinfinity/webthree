@@ -1,10 +1,10 @@
 .loader {
   margin: 0 auto;
-  width: 100px;
+  width: 50px;
   &:before {
     content: '';
     display: block;
-    padding-top: 100%;
+    padding-top: 1vh;
   }
 }
 
@@ -62,5 +62,5 @@
 }
 
 .showbox {
-  padding: 5%;
+  padding: 1%;
 }

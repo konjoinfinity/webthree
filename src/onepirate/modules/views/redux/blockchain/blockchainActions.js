@@ -108,7 +108,7 @@ export const connect = (nft) => {
           // Add listeners end
           console.log("wallet connection success");
         } else {
-          dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
+          dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME} - MATIC.`));
           const chId = Web3.utils.toHex("137");
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",

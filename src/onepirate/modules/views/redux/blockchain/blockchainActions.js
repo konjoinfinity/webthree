@@ -66,12 +66,12 @@ export const connect = (nft) => {
       });
     }
     const CONFIG = await configResponse.json();
-    console.log(CONFIG);
-    console.log("json is loaded");
+    // console.log(CONFIG);
+    // console.log("json is loaded");
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
-      console.log("metamask is installed");
+      // console.log("metamask is installed");
       Web3EthContract.setProvider(ethereum);
       let web3 = new Web3(ethereum);
       try {
@@ -81,16 +81,16 @@ export const connect = (nft) => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
-        console.log(networkId);
-        console.log(CONFIG.NETWORK.ID);
+        // console.log(networkId);
+        // console.log(CONFIG.NETWORK.ID);
         // eslint-disable-next-line
         if (networkId == CONFIG.NETWORK.ID) {
-          console.log("network ids match");
+          // console.log("network ids match");
           const SmartContractObj = new Web3EthContract(
             abi,
             CONFIG.CONTRACT_ADDRESS
           );
-          console.log(SmartContractObj);
+          // console.log(SmartContractObj);
           dispatch(
             connectSuccess({
               account: accounts[0],
@@ -106,7 +106,7 @@ export const connect = (nft) => {
             window.location.reload();
           });
           // Add listeners end
-          console.log("wallet connection success");
+          // console.log("wallet connection success");
         } else {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME} - MATIC.`));
           const chId = Web3.utils.toHex("137");
@@ -141,14 +141,15 @@ export const connect = (nft) => {
             //   window.location.reload();
             // });
             // Add listeners end
-            console.log("switched to MATIC network");
+            // console.log("switched to MATIC network");
           } else {
-            dispatch(connectFailed("Unable to connect to MATIC network"));
+            dispatch(connectFailed("Connecting to the MATIC network..."));
+            dispatch(connect());
           }
         }
       } catch (err) {
         dispatch(connectFailed(err.message));
-        console.log(err);
+        // console.log(err);
       }
     } else {
       dispatch(

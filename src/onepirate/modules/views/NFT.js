@@ -10,8 +10,6 @@ import Contract from 'web3-eth-contract';
 import Web3 from "web3"
 import { ethers } from "ethers";
 
-var display = storage.getState();
-
 const { ethereum } = window;
 Contract.setProvider(ethereum);
 let web3 = new Web3(ethereum);
@@ -21,10 +19,10 @@ if (window.ethereum && window.ethereum.isMetaMask) {
 }
 
 let txreceipt = "";
-let gasPrice = 0;
+//let gasPrice = 0;
 let lastBaseFeePerGas = 0;
-let maxFeePerGas = 0;
-let maxPriorityFeePerGas = 0;
+//let maxFeePerGas = 0;
+//let maxPriorityFeePerGas = 0;
 
 function NFT() {
   const dispatch = useDispatch();
@@ -78,9 +76,9 @@ function NFT() {
         Accept: "application/json",
       },
     });
-    console.log(abiResponse)
+    // console.log(abiResponse)
     const abi = await abiResponse.json();
-    console.log(abi)
+    // console.log(abi)
 var contract = new Contract(abi, CONFIG.CONTRACT_ADDRESS);
 try {
   await web3.eth
@@ -93,21 +91,21 @@ try {
         })
         .once("error", (err) => {
           setFeedback(err.message);
-          console.log(err);
+          // console.log(err);
           setClaimingNFT(false);
         })
         .then((receipt) => {
-          console.log(receipt);
+          // console.log(receipt);
           txreceipt = "data";
           setFeedback(
             `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
           );
           setClaimingNFT(false);
           dispatch(fetchData(blockchain.account));
-          console.log(blockchain);
+          // console.log(blockchain);
         });
   } catch (err) {
-  console.log(err);
+  // console.log(err);
 }
   };
 
@@ -133,8 +131,8 @@ try {
       setFeedback("Wallet connected, click 'MINT' to mint an NFT.");
     }
     // window.open("https://metamask.app.link/send/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A@137?value=5e19");
-    var isSafari = window.safari !== undefined;
-    if (isSafari) console.log("Safari, yeah!");
+    //var isSafari = window.safari !== undefined;
+    //if (isSafari) // console.log("Safari, yeah!");
   };
 
   const getConfig = async () => {
@@ -153,15 +151,15 @@ try {
     async function getFee(){
       if (window.ethereum && window.ethereum.isMetaMask) {
         let feeData = await provider.getFeeData();
-        console.log(feeData)
-        gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4));
+        // console.log(feeData)
+        //gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4));
         lastBaseFeePerGas = Number(String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(0, -4));
-        maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4));
-        maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -4));
-        console.log(gasPrice);
-        console.log(lastBaseFeePerGas);
-        console.log(maxFeePerGas);
-        console.log(maxPriorityFeePerGas);
+        //maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4));
+        //maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -4));
+        // console.log(gasPrice);
+        // console.log(lastBaseFeePerGas);
+        // console.log(maxFeePerGas);
+        // console.log(maxPriorityFeePerGas);
       }
     }
     getFee();
@@ -218,7 +216,7 @@ try {
                   e.preventDefault();
                   dispatch(connect());
                   getData();
-                  showSwitch("baebee");
+                  {/* eslint-disable-next-line */}
                 }}
               >
                 Connect Your Wallet

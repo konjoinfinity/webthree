@@ -203,6 +203,7 @@ export default function ProductHero() {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blockchain.account]);
+
   return (
     <div>
       <ProductHeroLayout

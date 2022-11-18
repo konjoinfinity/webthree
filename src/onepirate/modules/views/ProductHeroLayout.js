@@ -80,7 +80,7 @@ function ProductHeroLayout(props) {
             opacity: 0.4,
             zIndex: -1,
           }} />
-        <Background sx={sxBackground} />
+        <Background className="loading" sx={sxBackground} />
       </Container>
     </ProductHeroLayoutRoot>
   );

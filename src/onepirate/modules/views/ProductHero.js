@@ -33,7 +33,7 @@ let lastBaseFeePerGas = 0;
 let maxFeePerGas = 0;
 let maxPriorityFeePerGas = 0;
 
-const backgroundImage = require("./baebee.png");
+const backgroundImage = require("./baebee-min.png");
 const pixelImage = require("./pix.png");
 
 export default function ProductHero() {

@@ -62,7 +62,7 @@ function ProductHowItWorks() {
             <Grid item xs={12} md={4}>
               <Box sx={item}>
                 <Box sx={number}>1.</Box>
-                <img src={require('./metamask.png')}  alt={'Metamask'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
+                <img src={require('./metamask.webp')}  alt={'Metamask'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
                 <Typography variant="h5" align="center">
                   Connect your metamask wallet to the mint page and approve your wallet for interaction with the Baebee NFT website. If you don't have metamask installed, <a href="https://metamask.io/" rel="nofollow">click here.</a>
                 </Typography>
@@ -71,7 +71,7 @@ function ProductHowItWorks() {
             <Grid item xs={12} md={4}>
               <Box sx={item}>
                 <Box sx={number}>2.</Box>
-                <img src={require('./polygonlogo.png')}  alt={'Polygon'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
+                <img src={require('./polygonlogo.webp')}  alt={'Polygon'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
                 <Typography variant="h5" align="center">
                   Choose the number of NFTs you would like to mint, maximum 10 NFTs per transaction. Ensure you have enough <a href="https://www.coinbase.com/price/polygon"  rel="nofollow">MATIC - {'POLYGON'}</a> in your wallet and click "MINT".
                 </Typography>
@@ -80,7 +80,7 @@ function ProductHowItWorks() {
             <Grid item xs={12} md={4}>
               <Box sx={item}>
                 <Box sx={number}>3.</Box>
-                <img src={require('./nft-100.png')}  alt={'NFT'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
+                <img src={require('./nft-100.webp')}  alt={'NFT'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
                 <Typography variant="h5" align="center">
                   Wait for the minting transaction to confirm. Check your metamask wallet to view the status. Once confirmed, enjoy your newly minted Beauty Baebee!
                 </Typography>

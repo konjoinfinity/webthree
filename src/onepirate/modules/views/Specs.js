@@ -23,7 +23,7 @@ function Specs() {
           <Grid item xs={12} md={4}>
             <Box sx={item}>
           <Box component="img"
-                  src={require('./nftw.png')}
+                  src={require('./nftw.webp')}
                   alt="graph"
                   sx={{ height: "25vh" }} />
                 <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
@@ -38,7 +38,7 @@ function Specs() {
             <Box sx={item}>
             <Box
                   component="img"
-                  src={require('./currency.png')}
+                  src={require('./currency.webp')}
                   alt="polygon"
                   sx={{ height: "25vh" }}
                 />
@@ -54,7 +54,7 @@ function Specs() {
             <Box sx={item}>
             <Box
                   component="img"
-                  src={require('./exchange.png')}
+                  src={require('./exchange.webp')}
                   alt="exchangeable"
                   sx={{ height: "25vh" }} />
                 <Typography variant="h6" sx={{ my: 5 }}>

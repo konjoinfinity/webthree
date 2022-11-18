@@ -54,7 +54,7 @@ function ProductHeroLayout(props) {
                   justifyContent: "center",
               }}>
         <img
-          src={require("./bee.png")}
+          src={require("./bee.webp")}
           alt="Baebee"
           width="25%"
           height="25%"

@@ -11,6 +11,8 @@ import withRoot from './modules/withRoot';
 import Animation from './modules/views/Animation.tsx';
 import Typography from './modules/components/Typography';
 import Specs from "./modules/views/Specs"
+import Footer from './modules/views/Footer';
+
 
 function Index() {
   return (
@@ -32,6 +34,7 @@ function Index() {
       <ProductCTA />
       <ProductSmokingHero />
       <AppFooter />
+      <Footer />
     </React.Fragment>
   );
 }

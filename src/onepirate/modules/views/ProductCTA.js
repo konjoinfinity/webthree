@@ -38,7 +38,7 @@ function ProductCTA() {
                 Keep Up With Current Trends
               </Typography>
               <Typography variant="h5">
-                ReautyDAO's Newsletter Insights about Blockchain, Crypto, and much more.
+              Join the ReautyDAO Community today, get our latest news, insights and info about our ReautyCoin, Beabee NFTs, ReautyDAO and more.
               </Typography>
               <TextField
                 noBorder

@@ -24,7 +24,7 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src={require('./cosmetics.png')}
+                src={require('./cosmetics.webp')}
                 alt="suitcase"
                 sx={{ height: "25vh" }} />
               <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
@@ -39,7 +39,7 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src={require('./2562.png')}
+                src={require('./2562.webp')}
                 alt="graph"
                 sx={{ height: "25vh" }} />
               <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>
@@ -54,7 +54,7 @@ function ProductValues() {
             <Box sx={item}>
               <Box
                 component="img"
-                src={require('./handnft.png')}
+                src={require('./handnft.webp')}
                 alt="clock"
                 sx={{ height: "25vh" }} />
               <Typography variant="h6" sx={{ my: 5, textAlign: "center" }}>

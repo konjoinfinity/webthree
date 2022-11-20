@@ -3,7 +3,7 @@ import Typography from "../components/Typography";
 import ProductHeroLayout from "./ProductHeroLayout";
 import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connect } from "./redux/blockchain/blockchainActions";
 import { fetchData } from "./redux/data/dataActions";
@@ -457,6 +457,7 @@ export default function ProductHero() {
           Discover the experience
         </Typography>
       </ProductHeroLayout>
+      <Suspense fallback={<div>Loading...</div>}>
       <div
         style={{
           backgroundImage: `url(${pixBack})`,
@@ -755,6 +756,7 @@ export default function ProductHero() {
           </div>
         </Container>
       </div>
+      </Suspense>
     </div>
   );
 }

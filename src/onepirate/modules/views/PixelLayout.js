@@ -64,7 +64,7 @@ function ProductHeroLayout(props) {
         <br />
         <Box
           component="img"
-          src="https://img.icons8.com/ios-filled/344/down-squared--v1.png"
+          src={require("./downarrow.webp")}
           alt="arrow down"
           sx={{ height: "8%", width: "8%" }}
         />

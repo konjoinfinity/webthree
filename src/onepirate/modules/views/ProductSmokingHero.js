@@ -27,7 +27,7 @@ function ProductSmokingHero() {
       <br /><br /><br /> <br />
       <Box
         component="img"
-        src="https://reautydao.io/wp-content/uploads/2022/10/Group-1444.png"
+        src={require("./baebeebee.webp")}
         alt="buoy"
         sx={{ width: "20%" }}
       />

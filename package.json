@@ -34,6 +34,7 @@
     "reactstrap": "^9.1.5",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
+    "source-map-explorer": "^2.5.3",
     "stream": "^0.0.2",
     "stream-http": "^3.2.0",
     "util": "^0.12.5",
@@ -44,6 +45,7 @@
     "web3modal": "^1.9.9"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

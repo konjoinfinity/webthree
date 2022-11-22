@@ -28,10 +28,7 @@ if (window.ethereum && window.ethereum.isMetaMask) {
 }
 
 let txreceipt = "";
-// let gasPrice = 0;
 let lastBaseFeePerGas = 0;
-// let maxFeePerGas = 0;
-// let maxPriorityFeePerGas = 0;
 
 const pixBack = require("./pix.webp")
 const bbBack = require("./baebee.webp")
@@ -72,7 +69,6 @@ export default function ProductHero() {
   const claimNFTs = async (a) => {
     let cost = 0;
     let contractAddress = "";
-    // console.log(a);
     // eslint-disable-next-line
     if (a == true) {
       cost = 100000000000000000000;
@@ -81,8 +77,6 @@ export default function ProductHero() {
       cost = CONFIG.WEI_COST;
       contractAddress = CONFIG.CONTRACT_ADDRESS;
     }
-    // let cost = CONFIG.WEI_COST;
-    // let gasLimit = CONFIG.GAS_LIMIT;
     let gasLimit = lastBaseFeePerGas;
     let totalCostWei = String(cost * mintAmount);
     let totalGasLimit = String(gasLimit);
@@ -94,9 +88,7 @@ export default function ProductHero() {
         Accept: "application/json",
       },
     });
-    // console.log(abiResponse);
     const abi = await abiResponse.json();
-    // console.log(abi);
     var contract = new Contract(abi, CONFIG.CONTRACT_ADDRESS);
     try {
       await web3.eth
@@ -109,18 +101,15 @@ export default function ProductHero() {
         })
         .once("error", (err) => {
           setFeedback(err.message);
-          // console.log(err);
           setClaimingNFT(false);
         })
         .then((receipt) => {
-          // console.log(receipt);
           txreceipt = "data";
           setFeedback(
             `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
           );
           setClaimingNFT(false);
           dispatch(fetchData(blockchain.account));
-          // console.log(blockchain);
         });
     } catch (err) {
       // console.log(err);
@@ -149,10 +138,6 @@ export default function ProductHero() {
       setshowLoader(false)
       setFeedback("Wallet connected, click 'MINT' to mint an NFT.");
     }
-    // window.open("https://metamask.app.link/send/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A@137?value=5e19");
-    // var isSafari = window.safari !== undefined;
-    // if (isSafari) // console.log("Safari, yeah!");
-
   };
 
   const getConfig = async () => {
@@ -171,29 +156,12 @@ export default function ProductHero() {
     async function getFee() {
       if (window.ethereum && window.ethereum.isMetaMask) {
         let feeData = await provider.getFeeData();
-        // console.log(feeData);
-        // gasPrice = Number(
-        //   String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4)
-        // );
         lastBaseFeePerGas = Number(
           String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(
             0,
             -4
           )
         );
-        // maxFeePerGas = Number(
-        //   String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4)
-        // );
-        // maxPriorityFeePerGas = Number(
-        //   String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(
-        //     0,
-        //     -4
-        //   )
-        // );
-        // console.log(gasPrice);
-        // console.log(lastBaseFeePerGas);
-        // console.log(maxFeePerGas);
-        // console.log(maxPriorityFeePerGas);
       }
     }
     getFee();

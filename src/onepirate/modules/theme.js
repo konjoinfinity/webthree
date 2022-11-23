@@ -31,9 +31,9 @@ const rawTheme = createTheme({
   typography: {
     fontFamily: "'Work Sans', sans-serif",
     fontSize: 14,
-    fontWeightLight: 300, // Work Sans
-    fontWeightRegular: 400, // Work Sans
-    fontWeightMedium: 700, // Roboto Condensed
+    fontWeightLight: 300, 
+    fontWeightRegular: 400,
+    fontWeightMedium: 700,
   },
 });
 

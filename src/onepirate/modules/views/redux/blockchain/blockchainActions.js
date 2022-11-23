@@ -2,6 +2,31 @@ import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 import { fetchData } from "../data/dataActions";
 
+let accounts = {};
+let networkId = {};
+
+const getAcctNet = async() => {
+  accounts = await ethereum.request({ method: "eth_requestAccounts" });
+  networkId = await ethereum.request({ method: "net_version" });
+}
+
+const connectMatic = () => {
+  const SmartContractObj = new Web3EthContract(
+    abi,
+    CONFIG.CONTRACT_ADDRESS
+  );
+  dispatch(
+    connectSuccess({
+      account: accounts[0],
+      smartContract: SmartContractObj,
+      web3: web3,
+    })
+  );
+  ethereum.on("accountsChanged", (accounts) => {
+    dispatch(updateAccount(accounts[0]));
+  })
+}
+
 const connectRequest = () => {
   return {
     type: "CONNECTION_REQUEST",
@@ -66,82 +91,30 @@ export const connect = (nft) => {
       });
     }
     const CONFIG = await configResponse.json();
-    // console.log(CONFIG);
-    // console.log("json is loaded");
     const { ethereum } = window;
     const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
     if (metamaskIsInstalled) {
-      // console.log("metamask is installed");
       Web3EthContract.setProvider(ethereum);
       let web3 = new Web3(ethereum);
       try {
-        const accounts = await ethereum.request({
-          method: "eth_requestAccounts",
-        });
-        const networkId = await ethereum.request({
-          method: "net_version",
-        });
-        // console.log(networkId);
-        // console.log(CONFIG.NETWORK.ID);
+        getAcctNet();
         // eslint-disable-next-line
         if (networkId == CONFIG.NETWORK.ID) {
-          // console.log("network ids match");
-          const SmartContractObj = new Web3EthContract(
-            abi,
-            CONFIG.CONTRACT_ADDRESS
-          );
-          // console.log(SmartContractObj);
-          dispatch(
-            connectSuccess({
-              account: accounts[0],
-              smartContract: SmartContractObj,
-              web3: web3,
-            })
-          );
-          // Add listeners start
-          ethereum.on("accountsChanged", (accounts) => {
-            dispatch(updateAccount(accounts[0]));
-          });
+          connectMatic();
           ethereum.on("chainChanged", () => {
             window.location.reload();
           });
-          // Add listeners end
-          // console.log("wallet connection success");
         } else {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME} - MATIC.`));
           const chId = Web3.utils.toHex("137");
           await window.ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId: chId }], // chainId must be in hexadecimal numbers
+            params: [{ chainId: chId }],
           });
-          const accounts = await ethereum.request({
-            method: "eth_requestAccounts",
-          });
-          const networkId = await ethereum.request({
-            method: "net_version",
-          });
+          getAcctNet();
           // eslint-disable-next-line
           if (networkId == CONFIG.NETWORK.ID) {
-            const SmartContractObj = new Web3EthContract(
-              abi,
-              CONFIG.CONTRACT_ADDRESS
-            );
-            dispatch(
-              connectSuccess({
-                account: accounts[0],
-                smartContract: SmartContractObj,
-                web3: web3,
-              })
-            );
-            // Add listeners start
-            ethereum.on("accountsChanged", (accounts) => {
-              dispatch(updateAccount(accounts[0]));
-            });
-            // ethereum.on("chainChanged", () => {
-            //   window.location.reload();
-            // });
-            // Add listeners end
-            // console.log("switched to MATIC network");
+            connectMatic();
           } else {
             dispatch(connectFailed("Connecting to the MATIC network..."));
             dispatch(connect());
@@ -154,7 +127,6 @@ export const connect = (nft) => {
         if (err.code){
         dispatch(connectFailed("Adding the POLYGON MATIC network to Metamask..."));
         const chId = Web3.utils.toHex("137");
-        console.log(chId)
         web3.currentProvider.request({
           method: 'wallet_addEthereumChain',
           params: [{
@@ -178,27 +150,11 @@ export const connect = (nft) => {
             
           }]
         }).then(async() => {
-          const accounts = await ethereum.request({
-            method: "eth_requestAccounts",
-          });
-            const SmartContractObj = new Web3EthContract(
-              abi,
-              CONFIG.CONTRACT_ADDRESS
-            );
-            dispatch(
-              connectSuccess({
-                account: accounts[0],
-                smartContract: SmartContractObj,
-                web3: web3,
-              })
-            );
-            // Add listeners start
-            ethereum.on("accountsChanged", (accounts) => {
-              dispatch(updateAccount(accounts[0]));
-            })
+          getAcctNet();
+          connectMatic();
         })
         .catch((error) => {
-          console.log(error)
+          dispatch(connectFailed(`${error}`));
         }) 
       } else {
         dispatch(connectFailed(`${err.message}`));

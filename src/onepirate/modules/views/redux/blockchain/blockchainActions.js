@@ -145,6 +145,7 @@ export const connect = (nft) => {
           } else {
             dispatch(connectFailed("Connecting to the MATIC network..."));
             dispatch(connect());
+            dispatch(connectFailed("Connected to POLYGON MATIC network"));
           }
         }
       } catch (err) {

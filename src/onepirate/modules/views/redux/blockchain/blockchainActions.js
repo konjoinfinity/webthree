@@ -148,8 +148,60 @@ export const connect = (nft) => {
           }
         }
       } catch (err) {
-        dispatch(connectFailed(err.message));
-        // console.log(err);
+        console.log(err)
+        // eslint-disable-next-line 
+        if (err.code){
+        dispatch(connectFailed("Adding the POLYGON MATIC network to Metamask..."));
+        const chId = Web3.utils.toHex("137");
+        console.log(chId)
+        web3.currentProvider.request({
+          method: 'wallet_addEthereumChain',
+          params: [{
+            chainId: `${chId}`,
+            chainName: 'Polygon Mainnet',
+            nativeCurrency: {
+              name: "MATIC",
+              symbol: "MATIC",
+              decimals: 18
+            },
+            rpcUrls: [
+              "https://polygon-rpc.com/",
+              "https://rpc-mainnet.matic.network",
+              "https://matic-mainnet.chainstacklabs.com",
+              "https://rpc-mainnet.maticvigil.com",
+              "https://rpc-mainnet.matic.quiknode.pro",
+              "https://matic-mainnet-full-rpc.bwarelabs.com",
+              "https://polygon-bor.publicnode.com"
+            ],
+            blockExplorerUrls: ['https://polygonscan.com']
+            
+          }]
+        }).then(async() => {
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+            const SmartContractObj = new Web3EthContract(
+              abi,
+              CONFIG.CONTRACT_ADDRESS
+            );
+            dispatch(
+              connectSuccess({
+                account: accounts[0],
+                smartContract: SmartContractObj,
+                web3: web3,
+              })
+            );
+            // Add listeners start
+            ethereum.on("accountsChanged", (accounts) => {
+              dispatch(updateAccount(accounts[0]));
+            })
+        })
+        .catch((error) => {
+          console.log(error)
+        }) 
+      } else {
+        dispatch(connectFailed(`${err.message}`));
+      }
       }
     } else {
       dispatch(

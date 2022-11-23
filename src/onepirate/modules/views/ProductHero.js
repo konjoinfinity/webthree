@@ -112,7 +112,9 @@ export default function ProductHero() {
           dispatch(fetchData(blockchain.account));
         });
     } catch (err) {
-      // console.log(err);
+      setFeedback(
+        `${err} `
+      );
     }
   };
 

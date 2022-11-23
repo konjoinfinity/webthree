@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-// Used for wrapping a page component
 export const Screen = styled.div`
   background-color: var(--primary);
   background-image: ${({ image }) => (image ? `url(${image})` : "none")};
@@ -12,31 +11,26 @@ export const Screen = styled.div`
   flex-direction: column;
 `;
 
-// Used for providing space between components
 export const SpacerXSmall = styled.div`
   height: 8px;
   width: 8px;
 `;
 
-// Used for providing space between components
 export const SpacerSmall = styled.div`
   height: 16px;
   width: 16px;
 `;
 
-// Used for providing space between components
 export const SpacerMedium = styled.div`
   height: 24px;
   width: 24px;
 `;
 
-// Used for providing space between components
 export const SpacerLarge = styled.div`
   height: 32px;
   width: 32px;
 `;
 
-// Used for providing a wrapper around a component
 export const Container = styled.div`
   display: flex;
   flex: ${({ flex }) => (flex ? flex : 0)};

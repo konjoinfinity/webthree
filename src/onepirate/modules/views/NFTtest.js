@@ -58,7 +58,7 @@ function NFT() {
     // eslint-disable-next-line
     if (a == true) {
       cost = 100000000000000000000;
-      contractAddress = "0xd588563aff5E99F3960735D6096CDB451edBB19A"; //replace with pixel baebee contract address
+      contractAddress = "0xd588563aff5E99F3960735D6096CDB451edBB19A";
     } else {
       cost = CONFIG.WEI_COST;
       contractAddress = CONFIG.CONTRACT_ADDRESS;
@@ -74,9 +74,7 @@ function NFT() {
         Accept: "application/json",
       },
     });
-    // console.log(abiResponse)
     const abi = await abiResponse.json();
-    // console.log(abi)
 var contract = new Contract(abi, CONFIG.CONTRACT_ADDRESS);
 try {
   await web3.eth
@@ -89,21 +87,20 @@ try {
         })
         .once("error", (err) => {
           setFeedback(err.message);
-          // console.log(err);
           setClaimingNFT(false);
         })
         .then((receipt) => {
-          // console.log(receipt);
           txreceipt = "data";
           setFeedback(
             `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
           );
           setClaimingNFT(false);
           dispatch(fetchData(blockchain.account));
-          // console.log(blockchain);
         });
   } catch (err) {
-  // console.log(err);
+    setFeedback(
+      `${err} `
+    );
 }
   };
 
@@ -128,9 +125,6 @@ try {
       dispatch(fetchData(blockchain.account));
       setFeedback("Wallet connected, click 'MINT' to mint an NFT.");
     }
-    // window.open("https://metamask.app.link/send/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A@137?value=5e19");
-    //var isSafari = window.safari !== undefined;
-    //if (isSafari) // console.log("Safari, yeah!");
   };
 
   const getConfig = async () => {
@@ -149,15 +143,7 @@ try {
     async function getFee(){
       if (window.ethereum && window.ethereum.isMetaMask) {
         let feeData = await provider.getFeeData();
-        // console.log(feeData)
-        //gasPrice = Number(String(web3.utils.toNumber(feeData.gasPrice._hex)).slice(0, -4));
         lastBaseFeePerGas = Number(String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(0, -4));
-        //maxFeePerGas = Number(String(web3.utils.toNumber(feeData.maxFeePerGas._hex)).slice(0, -4));
-        //maxPriorityFeePerGas = Number(String(web3.utils.toNumber(feeData.maxPriorityFeePerGas._hex)).slice(0, -4));
-        // console.log(gasPrice);
-        // console.log(lastBaseFeePerGas);
-        // console.log(maxFeePerGas);
-        // console.log(maxPriorityFeePerGas);
       }
     }
     getFee();

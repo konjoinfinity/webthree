@@ -2,31 +2,6 @@ import Web3EthContract from "web3-eth-contract";
 import Web3 from "web3";
 import { fetchData } from "../data/dataActions";
 
-let accounts = {};
-let networkId = {};
-
-const getAcctNet = async() => {
-  accounts = await ethereum.request({ method: "eth_requestAccounts" });
-  networkId = await ethereum.request({ method: "net_version" });
-}
-
-const connectMatic = () => {
-  const SmartContractObj = new Web3EthContract(
-    abi,
-    CONFIG.CONTRACT_ADDRESS
-  );
-  dispatch(
-    connectSuccess({
-      account: accounts[0],
-      smartContract: SmartContractObj,
-      web3: web3,
-    })
-  );
-  ethereum.on("accountsChanged", (accounts) => {
-    dispatch(updateAccount(accounts[0]));
-  })
-}
-
 const connectRequest = () => {
   return {
     type: "CONNECTION_REQUEST",
@@ -97,10 +72,28 @@ export const connect = (nft) => {
       Web3EthContract.setProvider(ethereum);
       let web3 = new Web3(ethereum);
       try {
-        getAcctNet();
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        const networkId = await ethereum.request({
+          method: "net_version",
+        });
         // eslint-disable-next-line
         if (networkId == CONFIG.NETWORK.ID) {
-          connectMatic();
+          const SmartContractObj = new Web3EthContract(
+            abi,
+            CONFIG.CONTRACT_ADDRESS
+          );
+          dispatch(
+            connectSuccess({
+              account: accounts[0],
+              smartContract: SmartContractObj,
+              web3: web3,
+            })
+          );
+          ethereum.on("accountsChanged", (accounts) => {
+            dispatch(updateAccount(accounts[0]));
+          });
           ethereum.on("chainChanged", () => {
             window.location.reload();
           });
@@ -111,10 +104,28 @@ export const connect = (nft) => {
             method: "wallet_switchEthereumChain",
             params: [{ chainId: chId }],
           });
-          getAcctNet();
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+          const networkId = await ethereum.request({
+            method: "net_version",
+          });
           // eslint-disable-next-line
           if (networkId == CONFIG.NETWORK.ID) {
-            connectMatic();
+            const SmartContractObj = new Web3EthContract(
+              abi,
+              CONFIG.CONTRACT_ADDRESS
+            );
+            dispatch(
+              connectSuccess({
+                account: accounts[0],
+                smartContract: SmartContractObj,
+                web3: web3,
+              })
+            );
+            ethereum.on("accountsChanged", (accounts) => {
+              dispatch(updateAccount(accounts[0]));
+            });
           } else {
             dispatch(connectFailed("Connecting to the MATIC network..."));
             dispatch(connect());
@@ -122,7 +133,6 @@ export const connect = (nft) => {
           }
         }
       } catch (err) {
-        console.log(err)
         // eslint-disable-next-line 
         if (err.code){
         dispatch(connectFailed("Adding the POLYGON MATIC network to Metamask..."));
@@ -150,11 +160,26 @@ export const connect = (nft) => {
             
           }]
         }).then(async() => {
-          getAcctNet();
-          connectMatic();
+          const accounts = await ethereum.request({
+            method: "eth_requestAccounts",
+          });
+            const SmartContractObj = new Web3EthContract(
+              abi,
+              CONFIG.CONTRACT_ADDRESS
+            );
+            dispatch(
+              connectSuccess({
+                account: accounts[0],
+                smartContract: SmartContractObj,
+                web3: web3,
+              })
+            );
+            ethereum.on("accountsChanged", (accounts) => {
+              dispatch(updateAccount(accounts[0]));
+            })
         })
         .catch((error) => {
-          dispatch(connectFailed(`${error}`));
+          dispatch(connectFailed(`${error.message}`));
         }) 
       } else {
         dispatch(connectFailed(`${err.message}`));

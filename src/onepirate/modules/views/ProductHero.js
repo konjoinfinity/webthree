@@ -28,11 +28,9 @@ if (window.ethereum && window.ethereum.isMetaMask) {
 }
 
 let txreceipt = "";
-let lastBaseFeePerGas = 0;
 
 const pixBack = require("./pix.webp")
 const bbBack = require("./baebee.webp")
-
 
 export default function ProductHero() {
   const [open, setOpen] = useState(true);
@@ -77,11 +75,8 @@ export default function ProductHero() {
       cost = CONFIG.WEI_COST;
       contractAddress = CONFIG.CONTRACT_ADDRESS;
     }
-    let gasLimit = lastBaseFeePerGas;
     let totalCostWei = String(cost * mintAmount);
-    let totalGasLimit = String(gasLimit);
     setClaimingNFT(true);
-
     const abiResponse = await fetch("/config/abi.json", {
       headers: {
         "Content-Type": "application/json",
@@ -96,8 +91,9 @@ export default function ProductHero() {
           from: blockchain.account,
           to: contractAddress,
           data: contract.methods.mint(mintAmount).encodeABI(),
-          gasLimit: String(totalGasLimit),
-          value: totalCostWei,
+          maxPriorityFeePerGas: null,
+          maxFeePerGas: null, 
+          value: totalCostWei
         })
         .once("error", (err) => {
           setFeedback(err.message);
@@ -155,18 +151,6 @@ export default function ProductHero() {
 
   useEffect(() => {
     getConfig();
-    async function getFee() {
-      if (window.ethereum && window.ethereum.isMetaMask) {
-        let feeData = await provider.getFeeData();
-        lastBaseFeePerGas = Number(
-          String(web3.utils.toNumber(feeData.lastBaseFeePerGas._hex)).slice(
-            0,
-            -4
-          )
-        );
-      }
-    }
-    getFee();
   }, []);
 
   useEffect(() => {

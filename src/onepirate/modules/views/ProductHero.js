@@ -64,16 +64,46 @@ export default function ProductHero() {
     SHOW_BACKGROUND: false,
   });
 
+  const addNftToWal = async (contract, nftsym, png) => {
+    try {
+      const wasAdded = await ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: contract,
+            symbol: nftsym,
+            decimals: 0,
+            image: `https://blingylab.com/wp-content/uploads/${png}.png`,
+          },
+        },
+      });
+      if (wasAdded) {
+        setFeedback("NFT was imported to your wallet! View it on ");
+      } else {
+        setFeedback("NFT was not imported.");
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
   const claimNFTs = async (a) => {
     let cost = 0;
     let contractAddress = "";
+    let nftSymbol = "";
+    let nftimg = "";
     // eslint-disable-next-line
     if (a == true) {
       cost = 100000000000000000000;
       contractAddress = "0xd588563aff5E99F3960735D6096CDB451edBB19A";
+      nftSymbol = "BTYBBPIX"
+      nftimg = "bbpix"
     } else {
       cost = CONFIG.WEI_COST;
       contractAddress = CONFIG.CONTRACT_ADDRESS;
+      nftSymbol = "BTYBAEBEE"
+      nftimg = "bb"
     }
     let totalCostWei = String(cost * mintAmount);
     setClaimingNFT(true);
@@ -98,15 +128,23 @@ export default function ProductHero() {
         .once("error", (err) => {
           setFeedback(err.message);
           setClaimingNFT(false);
+          setshowLoader(false);
         })
-        .then((receipt) => {
-          txreceipt = "data";
-          setFeedback(
-            `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
-          );
-          setClaimingNFT(false);
-          dispatch(fetchData(blockchain.account));
-        });
+        .then( async(receipt) => {
+          const address = contractAddress;
+          const erc721 = new ethers.Contract(address, abi, provider);
+          let totsup = await erc721.totalSupply();
+          totsup = web3.utils.hexToNumber(totsup)
+                console.log(receipt);
+                txreceipt = String(totsup + 1);
+                setFeedback(
+                  `WOW, the ${CONFIG.NFT_NAME} is yours! go visit Opensea.io to view it ==> `
+                );
+                setClaimingNFT(false);
+                setshowLoader(false);
+                dispatch(fetchData(blockchain.account));
+                addNftToWal(contractAddress, nftSymbol, nftimg);
+              });
     } catch (err) {
       setFeedback(
         `${err} `
@@ -295,23 +333,13 @@ export default function ProductHero() {
                           sx={{ mb: 2, fontSize: "1.8vh" }}
                         >
                           {feedback} 
-                          {txreceipt !== "" ? (
-                            <a
-                              href={
-                                "https://opensea.io/collection/beauty-baebee-nft"
-                              }
-                              rel="nofollow"
-                            >
-                              Opensea
-                            </a>
-                          ) : (
-                            ""
-                          )}
+                          {txreceipt !== "" ? (<a href={`https://opensea.io/assets/matic/0x12E4c6b6Be904055FF15283C82bE1d941a427f7A/${txreceipt}`} rel="nofollow">Opensea</a>) : ("")}
                         </Alert>
                       </Collapse>
                     </Box>
                     : ""}
                     <br />
+
                     {claimingNFT ? 
                               <div className="showbox">
                               <div className="loader">
@@ -584,18 +612,7 @@ export default function ProductHero() {
                                 sx={{ mb: 2, fontSize: "1.8vh" }}
                               >
                                 {feedback !== "" ? <div>{feedback}</div> : ""}
-                                {txreceipt !== "" ? (
-                                  <a
-                                    href={
-                                      "https://opensea.io/collection/beauty-baebee-nft"
-                                    }
-                                    rel="nofollow"
-                                  >
-                                    Opensea
-                                  </a>
-                                ) : (
-                                  ""
-                                )}
+                                {txreceipt !== "" ? (<a href={`https://opensea.io/assets/matic/0xd588563aff5E99F3960735D6096CDB451edBB19A/${txreceipt}`} rel="nofollow">Opensea</a>) : ("")}
                               </Alert>
                             </Collapse>
                           </Box>

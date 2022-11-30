@@ -92,4 +92,22 @@ it('find copyright container', () => {
     justifyContent: "center",})
 })
 
+it('should find copy symbol', () => { 
+    render(<Footer/>)
+    const section = screen.getByText("©")
+    expect(section).toBeInTheDocument();
+})
 
+it('should find copy symbol', () => { 
+    render(<Footer/>)
+    const link = screen.getByText("ReautyDAO")
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', 'https://reautydao.io')
+})
+
+it('should find dynamic year', () => { 
+    render(<Footer/>)
+    const link = screen.getByText(new Date().getFullYear())
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveStyle({fontSize: "2vh", color: "#000"})
+})

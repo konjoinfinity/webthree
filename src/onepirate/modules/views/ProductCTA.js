@@ -94,6 +94,7 @@ function ProductCTA() {
         </Grid>
       </Grid>
       <Snackbar
+      data-testid="snack"
         open={open}
         closeFunc={handleClose}
         message="Welcome and thank you for joining the ReautyDAO community! We send our insights newsletter weekly, make sure to check your spam folder."

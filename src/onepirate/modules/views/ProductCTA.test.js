@@ -80,3 +80,16 @@ it('should find CTA image', () => {
   expect(section).toBeInTheDocument();
   expect(section).toHaveAttribute('src', "https://i.seadn.io/gae/bFI6oyaPNfB7qmUAx4eWaT0fHh_oc6TMKCx3XsAxP47rNU61zH6YBG7Qhz81Oiy7mMXswMzX-82D8C3t6c1Fbz25vVPYPKmrSPCjxA?auto=format&w=1000")
 })
+
+it('should trigger popup after submitting email, find snackbar, find text', () => { 
+  render(<ProductCTA/>)
+  const email = screen.getByPlaceholderText("Your email")
+  userEvent.type(email, "test@mail.com");
+  expect(screen.getByPlaceholderText("Your email")).toHaveValue("test@mail.com");
+  fireEvent.click(screen.getByRole("button"));
+  const section = screen.getByTestId("snack")
+  expect(section).toBeInTheDocument();
+  const text = screen.getByText("Welcome and thank you for joining the ReautyDAO community! We send our insights newsletter weekly, make sure to check your spam folder.")
+  expect(section).toBeInTheDocument();
+})
+

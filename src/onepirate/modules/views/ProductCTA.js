@@ -20,11 +20,11 @@ function ProductCTA() {
   };
 
   return (
-    <Container component="section" sx={{ mt: 10, display: 'flex' }}>
-      
-      <Grid container>
-        <Grid item xs={12} md={6} sx={{ zIndex: 1 }}>
+    <Container data-testid="cta" component="section" sx={{ mt: 10, display: 'flex' }}>
+      <Grid container role="container">
+        <Grid role="grid" item xs={12} md={6} sx={{ zIndex: 1 }}>
           <Box
+          data-testid="box1"
             sx={{
               display: 'flex',
               justifyContent: 'center',
@@ -33,7 +33,7 @@ function ProductCTA() {
               px: 3,
             }}
           >
-            <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
+            <Box data-testid="form" component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
               <Typography variant="h2" component="h2" gutterBottom>
                 Keep Up With Current Trends
               </Typography>
@@ -44,6 +44,7 @@ function ProductCTA() {
                 noBorder
                 placeholder="Your email"
                 variant="standard"
+                type="email"
                 sx={{ width: '100%', mt: 3, mb: 2 }}
               />
               <Button
@@ -58,12 +59,14 @@ function ProductCTA() {
           </Box>
         </Grid>
         <Grid
+        data-testid="grid2"
           item
           xs={12}
           md={6}
           sx={{ display: { md: 'block', xs: 'none' }, position: 'relative' }}
         >
           <Box
+          data-testid="box2"
             sx={{
               position: 'absolute',
               top: -67,

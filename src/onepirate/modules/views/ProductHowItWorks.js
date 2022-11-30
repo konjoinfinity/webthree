@@ -30,10 +30,12 @@ function ProductHowItWorks() {
 
   return (
     <Box
+    data-testid="hiw"
       component="section"
       sx={{ display: 'flex', bgcolor: 'secondary.light', overflow: 'hidden' }}
     >
       <Container
+      data-testid="hiw1"
         sx={{
           mt: 10,
           mb: 15,
@@ -58,30 +60,30 @@ function ProductHowItWorks() {
           How to mint
         </Typography>
         <div>
-          <Grid container spacing={5}>
-            <Grid item xs={12} md={4}>
-              <Box sx={item}>
-                <Box sx={number}>1.</Box>
+          <Grid container spacing={5} data-testid="grid1">
+            <Grid item xs={12} md={4} data-testid="grid2">
+              <Box sx={item} data-testid="item">
+                <Box data-testid="number" sx={number}>1.</Box>
                 <img src={require('./metamask.webp')}  alt={'Metamask'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
-                <Typography variant="h5" align="center">
+                <Typography variant="h5" align="center" data-testid="text1">
                   Connect your metamask wallet to the mint page and approve your wallet for interaction with the Baebee NFT website. If you don't have metamask installed, <a href="https://metamask.io/" rel="nofollow">click here.</a>
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={item}>
-                <Box sx={number}>2.</Box>
+            <Grid item xs={12} md={4} data-testid="grid3">
+              <Box sx={item} data-testid="item2">
+                <Box data-testid="number2" sx={number}>2.</Box>
                 <img src={require('./polygonlogo-transformed.webp')}  alt={'Polygon'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
-                <Typography variant="h5" align="center">
-                  Choose the number of NFTs you would like to mint, maximum 10 NFTs per transaction. Ensure you have enough <a href="https://www.coinbase.com/price/polygon"  rel="nofollow">MATIC - {'POLYGON'}</a> in your wallet and click "MINT".
+                <Typography variant="h5" align="center" data-testid="text2">
+                  Choose the number of NFTs you would like to mint, maximum 10 NFTs per transaction. Ensure you have enough <a href="https://www.coinbase.com/price/polygon"  rel="nofollow">MATIC - POLYGON</a> in your wallet and click "MINT".
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <Box sx={item}>
-                <Box sx={number}>3.</Box>
+            <Grid item xs={12} md={4} data-testid="grid4">
+              <Box sx={item} data-testid="item3">
+                <Box data-testid="number3" sx={number}>3.</Box>
                 <img src={require('./nft-100.webp')}  alt={'NFT'} style={{height: "11vh", width: "11vh", margin: "5vh"}} />
-                <Typography variant="h5" align="center">
+                <Typography variant="h5" align="center" data-testid="text3">
                   Wait for the minting transaction to confirm. Check your metamask wallet to view the status. Once confirmed, enjoy your newly minted Beauty Baebee!
                 </Typography>
               </Box>

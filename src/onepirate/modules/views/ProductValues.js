@@ -13,15 +13,15 @@ const item = {
 
 function ProductValues() {
   return (
-    <Box sx={{ bgcolor: 'secondary.light' }}>
+    <Box sx={{ bgcolor: 'secondary.light' }} data-testid="box1">
       <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14, textAlign: "center", paddingTop: "10vh" }}>
        Beauty Baebee NFT Series
         </Typography>
-    <Box component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}>
-      <Container sx={{ display: 'flex', position: 'relative', mb: "10vh" }}>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
-            <Box sx={item}>
+    <Box data-testid="box2" component="section" sx={{ display: 'flex', overflow: 'hidden', bgcolor: 'secondary.light' }}>
+      <Container data-testid="cont1" sx={{ display: 'flex', position: 'relative', mb: "10vh" }}>
+        <Grid container spacing={5} data-testid="grid1">
+          <Grid item xs={12} md={4} data-testid="grid2">
+            <Box sx={item} data-testid="box3">
               <Box
                 component="img"
                 src={require('./cosmetics.webp')}
@@ -35,8 +35,8 @@ function ProductValues() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Box sx={item}>
+          <Grid item xs={12} md={4} data-testid="grid3">
+            <Box sx={item} data-testid="box4">
               <Box
                 component="img"
                 src={require('./2562.webp')}
@@ -50,8 +50,8 @@ function ProductValues() {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Box sx={item}>
+          <Grid item xs={12} md={4} data-testid="grid4">
+            <Box sx={item} data-testid="box5">
               <Box
                 component="img"
                 src={require('./handnft.webp')}

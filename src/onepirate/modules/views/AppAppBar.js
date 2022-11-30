@@ -61,7 +61,7 @@ function AppAppBar() {
 
   return (
     <div>
-      <AppBar position="fixed">
+      <AppBar position="fixed" data-testid="appbar">
         <Toolbar sx={{ justifyContent: 'space-between', backgroundColor: "#FFAB9C" }}>
           <Box sx={{ flex: 1 }} />
           <Link

@@ -9,7 +9,7 @@ import {
 function Copyright() {
     return (
       <React.Fragment>
-        <div style={{
+        <div role="copycont" style={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "row",
@@ -29,14 +29,14 @@ function Copyright() {
 export default function Footer() {
   return (
     <MDBFooter role="footcont" className='bg-light text-center text-white'>
-      <MDBContainer className='p-4 pb-0'>
-        <section className='mb-4'>
+      <MDBContainer className='p-4 pb-0' data-testid="container">
+        <section className='mb-4' data-testid="section">
           <MDBBtn
             floating
             className='m-1'
             style={{ backgroundColor: '#3b5998' }}
             href='https://reautydao.io/'
-            role='button facebook'
+            role='buttonfb'
             id='reautydao'
           >
             <MDBIcon fab icon='facebook-f' />
@@ -46,7 +46,7 @@ export default function Footer() {
             className='m-1'
             style={{ backgroundColor: '#55acee' }}
             href='https://twitter.com/ReautyDao'
-            role='button'
+            role='buttontw'
           >
             <MDBIcon fab icon='twitter' />
           </MDBBtn>
@@ -55,7 +55,7 @@ export default function Footer() {
             className='m-1'
             style={{ backgroundColor: '#dd4b39' }}
             href='https://reautydao.io/'
-            role='button'
+            role='buttongo'
           >
             <MDBIcon fab icon='google' />
           </MDBBtn>
@@ -64,7 +64,7 @@ export default function Footer() {
             className='m-1'
             style={{ backgroundColor: '#ac2bac' }}
             href='https://www.instagram.com/reautyapp/'
-            role='button'
+            role='buttonig'
           >
             <MDBIcon fab icon='instagram' />
           </MDBBtn>
@@ -73,7 +73,7 @@ export default function Footer() {
             className='m-1'
             style={{ backgroundColor: '#0082ca' }}
             href='https://www.linkedin.com/company/blingy/'
-            role='button'
+            role='buttonli'
           >
             <MDBIcon fab icon='linkedin-in' />
           </MDBBtn>
@@ -82,7 +82,7 @@ export default function Footer() {
             className='m-1'
             style={{ backgroundColor: '#333333' }}
             href='https://reautydao.io/'
-            role='button'
+            role='buttondis'
           >
             <MDBIcon fab icon='discord' />
           </MDBBtn>

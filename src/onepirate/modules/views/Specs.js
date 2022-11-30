@@ -13,16 +13,16 @@ const item = {
 
 function Specs() {
   return (
-    <Box>
+    <Box data-testid="specs">
       <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14, textAlign: "center", paddingTop: "10vh" }}>
        NFT Specifications
         </Typography>
-    <Box component="section" sx={{ display: 'flex', overflow: 'hidden', pb: "10vh" }}>
-      <Container sx={{ display: 'flex', position: 'relative', mb: "10vh" }}>
-        <Grid container spacing={5}>
-          <Grid item xs={12} md={4}>
-            <Box sx={item}>
-          <Box component="img"
+    <Box data-testid="section" component="section" sx={{ display: 'flex', overflow: 'hidden', pb: "10vh" }}>
+      <Container sx={{ display: 'flex', position: 'relative', mb: "10vh" }} data-testid="container">
+        <Grid container spacing={5} data-testid="grid">
+          <Grid item xs={12} md={4} data-testid="grid1">
+            <Box sx={item} data-testid="item">
+          <Box component="img" data-testid="img"
                   src={require('./nftw.webp')}
                   alt="graph"
                   sx={{ height: "25vh" }} />
@@ -34,8 +34,8 @@ function Specs() {
               </Typography>
                   </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Box sx={item}>
+          <Grid item xs={12} md={4} data-testid="grid2">
+            <Box sx={item} data-testid="item2">
             <Box
                   component="img"
                   src={require('./currency.webp')}
@@ -50,8 +50,8 @@ function Specs() {
                        </Typography>
                   </Box>
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Box sx={item}>
+          <Grid item xs={12} md={4} data-testid="grid3">
+            <Box sx={item} data-testid="item3">
             <Box
                   component="img"
                   src={require('./exchange.webp')}
@@ -60,7 +60,7 @@ function Specs() {
                 <Typography variant="h6" sx={{ my: 5 }}>
                 NFT Utility
               </Typography>
-              <Typography variant="h5" sx={{ textAlign: "center" }}>
+              <Typography data-testid="text4" variant="h5" sx={{ textAlign: "center" }}>
               Baebees NFTs are exchangeable for ReautyCoin (ERC-20 Token). We allow our NFT owner to convert their NFT To our ReautyCoin. Please check the <a href="https://reautydao.io" rel="dofollow">ReautyDAO page</a> to learn more.
                </Typography>
                   </Box>

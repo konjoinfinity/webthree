@@ -46,14 +46,15 @@ function Card({ baebee, title, desc }: Props) {
       className="card-container"
       initial="offscreen"
       whileInView="onscreen"
+      data-testid="cardcont"
       viewport={{ once: true, amount: 0.9 }}>
-      <motion.div className="card" variants={cardVariants}>
+      <motion.div className="card" data-testid="motioncard" variants={cardVariants}>
         <img style={{maxHeight: "90%", maxWidth: "90%"}} src={baebee} alt="baebee"/>
       </motion.div>
-      <motion.div className="card" variants={secCardVariants}>
-        <div style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center"}}>
-      <Typography style={{maxWidth: "100%", fontSize: "2.5vh", paddingBottom: "8%"}}>{title}</Typography>
-        <Typography style={{maxWidth: "75%", fontSize: "1.3vh"}}>{desc}</Typography>
+      <motion.div className="card" data-testid="motioncard2" variants={secCardVariants}>
+        <div data-testid="divider" style={{display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center", alignItems: "center"}}>
+      <Typography data-testid="text1" style={{maxWidth: "100%", fontSize: "2.5vh", paddingBottom: "8%"}}>{title}</Typography>
+        <Typography data-testid="text2" style={{maxWidth: "75%", fontSize: "1.3vh"}}>{desc}</Typography>
         </div>
       </motion.div>
     </motion.div>
@@ -72,8 +73,8 @@ const baebees: [string, string, string][] = [
 
 export default function Animation() {
   return baebees.map(([baebee, title, desc]) => (
-    <div className="card-display" style={{backgroundColor: "#FEF7E9"}} key={title}>
-    <Card baebee={baebee} title={title} desc={desc} key={title} />
+    <div data-testid="displaycard" className="card-display" style={{backgroundColor: "#FEF7E9"}} key={title}>
+    <Card data-testid="card" baebee={baebee} title={title} desc={desc} key={title} />
     </div>
   ));
 }

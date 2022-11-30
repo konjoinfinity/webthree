@@ -15,7 +15,7 @@ function Copyright() {
                   alignItems: "row",
                   justifyContent: "center",
                 
-              }}>
+              }} role="footcont">
         <p style={{fontSize: "2vh", color: "#000"}}>{'©  '}</p>
         <a style={{fontSize: "2vh", color: "#000"}} href="https://reautydao.io">
           ReautyDAO

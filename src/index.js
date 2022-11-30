@@ -8,14 +8,17 @@ import { Provider } from "react-redux";
 import * as buffer from "buffer";
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import ErrorBoundary from "./ErrorBoundary"
 
 window.Buffer = buffer.Buffer;
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+  <ErrorBoundary>
   <Provider store={store}>
     <App />
   </Provider>
+  </ErrorBoundary>
 );
 
 reportWebVitals();

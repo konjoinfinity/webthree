@@ -4,6 +4,7 @@ exports[`footer class test 1`] = `
 <div>
   <footer
     class="bg-light text-center text-white"
+    role="footcont"
   >
     <div
       class="container p-4 pb-0"
@@ -14,7 +15,8 @@ exports[`footer class test 1`] = `
         <a
           class="ripple ripple-surface btn btn-primary btn-floating m-1"
           href="https://reautydao.io/"
-          role="button"
+          id="reautydao"
+          role="button facebook"
           style="background-color: rgb(59, 89, 152);"
         >
           <i
@@ -79,7 +81,6 @@ exports[`footer class test 1`] = `
       />
     </div>
     <div
-      role="footcont"
       style="display: flex; flex-direction: row; align-items: row; justify-content: center;"
     >
       <p

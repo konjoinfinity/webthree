@@ -8,8 +8,9 @@ function ProductSmokingHero() {
   return (
     <Container
       component="section"
+      data-testid="smoke"
       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', my: 9 }}>
-      <a style={{textDecoration: "none"}} href="https://reautydao.io/about/">
+      <a data-testid="qs" style={{textDecoration: "none"}} href="https://reautydao.io/about/">
       <br /> <br />
       <Button
         sx={{
@@ -28,7 +29,7 @@ function ProductSmokingHero() {
       <Box
         component="img"
         src={require("./baebeebee.webp")}
-        alt="buoy"
+        alt="bbimg"
         sx={{ width: "20%" }}
       />
       <br /> <br />

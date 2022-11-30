@@ -3,7 +3,7 @@ import Footer from './Footer'
 
 test('renders footer', () => {
   render(<Footer />);
-  const cont = screen.getByRole("footcont");
+  const cont = screen.getByTestId("footcont");
   expect(cont).toBeInTheDocument();
 });
 
@@ -30,7 +30,7 @@ it('should find section', () => {
 
 it('should find fb button, check class, href', () => { 
     render(<Footer/>)
-    const button = screen.getByRole("buttonfb")
+    const button = screen.getByTestId("buttonfb")
     expect(button).toBeEnabled();
     expect(button).toHaveClass('m-1')
     expect(button).toHaveAttribute('href', 'https://reautydao.io/')
@@ -39,7 +39,7 @@ it('should find fb button, check class, href', () => {
 
 it('should find twitter button, check class, href', () => { 
     render(<Footer/>)
-    const button = screen.getByRole("buttontw")
+    const button = screen.getByTestId("buttontw")
     expect(button).toBeEnabled();
     expect(button).toHaveClass('m-1')
     expect(button).toHaveAttribute('href', 'https://twitter.com/ReautyDao')
@@ -47,7 +47,7 @@ it('should find twitter button, check class, href', () => {
 
 it('should find google button, check class, href', () => { 
     render(<Footer/>)
-    const button = screen.getByRole("buttongo")
+    const button = screen.getByTestId("buttongo")
     expect(button).toBeEnabled();
     expect(button).toHaveClass('m-1')
     expect(button).toHaveAttribute('href', 'https://reautydao.io/')
@@ -55,7 +55,7 @@ it('should find google button, check class, href', () => {
 
 it('should find ig button, check class, href', () => { 
     render(<Footer/>)
-    const button = screen.getByRole("buttonig")
+    const button = screen.getByTestId("buttonig")
     expect(button).toBeEnabled();
     expect(button).toHaveClass('m-1')
     expect(button).toHaveAttribute('href', 'https://www.instagram.com/reautyapp/')
@@ -63,7 +63,7 @@ it('should find ig button, check class, href', () => {
 
 it('should find linkedin button, check class, href', () => { 
     render(<Footer/>)
-    const button = screen.getByRole("buttonli")
+    const button = screen.getByTestId("buttonli")
     expect(button).toBeEnabled();
     expect(button).toHaveClass('m-1')
     expect(button).toHaveAttribute('href', 'https://www.linkedin.com/company/blingy/')
@@ -71,7 +71,7 @@ it('should find linkedin button, check class, href', () => {
 
 it('should find discord button, check class, href', () => { 
     render(<Footer/>)
-    const button = screen.getByRole("buttondis")
+    const button = screen.getByTestId("buttondis")
     expect(button).toBeEnabled();
     expect(button).toHaveClass('m-1')
     expect(button).toHaveAttribute('href', 'https://reautydao.io/')
@@ -85,7 +85,7 @@ it('should find image', () => {
 
 it('find copyright container', () => { 
     render(<Footer/>)
-    const copy = screen.getByRole("copycont")
+    const copy = screen.getByTestId("copycont")
     expect(copy).toHaveStyle({ display: "flex",
     flexDirection: "row",
     alignItems: "row",

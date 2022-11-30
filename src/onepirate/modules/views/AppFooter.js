@@ -4,12 +4,12 @@ import Typography from '../components/Typography';
 export default function AppFooter() {
   return (
     <Typography
-      role="footer"
+      data-testid="footer"
       component="footer"
       sx={{ height: "5vh" }}
       style={{
       background: `radial-gradient(circle, rgba(238,174,202,1) 0%, #FFAB9C 100%)`}}>
-      <div role="footerdiv" style={{
+      <div data-testid="footerdiv" style={{
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "row",

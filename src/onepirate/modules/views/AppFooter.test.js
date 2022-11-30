@@ -3,12 +3,12 @@ import AppFooter from './AppFooter'
 
 test('renders footer', () => {
   render(<AppFooter />);
-  const gradient = screen.getByRole("footer");
+  const gradient = screen.getByTestId("footer");
   expect(gradient).toBeInTheDocument();
 });
 
 test("div renders", () => {
   render(<AppFooter />);
-  const div = screen.getByRole("footerdiv")
+  const div = screen.getByTestId("footerdiv")
   expect(div).toBeInTheDocument();
 })

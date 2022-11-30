@@ -107,14 +107,13 @@ export default function ProductCategories() {
       <Typography variant="h4" marked="center" align="center" component="h2">
         Recent Mints
       </Typography>
-      <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
+      <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }} data-testid="imagebox">
         {images.map((image) => (
           <ImageIconButton
             key={image.title}
             style={{
               width: image.width,
-            }}
-          >
+            }}>
             <Box
               sx={{
                 position: 'absolute',
@@ -128,7 +127,7 @@ export default function ProductCategories() {
               }}
             />
             <ImageBackdrop className="imageBackdrop" />
-            <a href="https://opensea.io/collection/beauty-baebee-nft">
+            <a alt="collectionlink" href="https://opensea.io/collection/beauty-baebee-nft">
             <Box
               sx={{
                 position: 'absolute',
